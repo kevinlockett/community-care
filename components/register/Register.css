@@ -1,0 +1,18 @@
+.register-hero {
+    width: 70%;
+    display: block;
+    margin: 0 auto 4em;
+}
+
+.register-title {
+    color: var(--clr-accent-dk-green);
+}
+
+.registrationCards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4em;
+}
+
+

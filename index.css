@@ -1,13 +1,69 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Custom properties */
+:root {
+    --clr-neutral-900: rgb(29, 33, 43);
+    --clr-neutral-700: hsla(221, 18%, 32%, 1); /* independence */
+    --clr-neutral-300: hsla(187, 6%, 69%, 1); /* silver-sand */
+    --clr-neutral-100: hsla(224, 52%, 94%, 1); /* ghost white */
+    
+    --clr-accent-lt-blue: hsla(217, 89%, 83%, 1); /* baby-blue-eyes */
+    --clr-accent-dk-blue: rgb(92, 123, 172);
+    --clr-accent-lt-green: rgb(163, 185, 127);
+    --clr-accent-dk-green: hsla(83, 44%, 23%, 1); /* army-green */
+    
+    --clr-cornsilk: hsla(48, 100%, 94%, 1);
+    --clr-yellow-crayola: hsla(52, 100%, 76%, 1);
+    --clr-macaroni-and-cheese: hsla(23, 100%, 74%, 1);
+
+    --background: hsla(221, 18%, 32%, .7);
+    --background-grn: hsla(83, 44%, 23%, .3);
+    
+    --spacer: 1rem;
+    --box-shadow: 0 0.25em 1.5em rgba(0, 0, 0, 0.15);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+ul[class],
+ol[class] {
+    list-style:none;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+body {
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.center {
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-weight: 700;
+    font-size: var(--fs-400);
+    padding: 0.75em 1.5em;
+    background: var(--clr-accent-dk-green);
+    color: var(--clr-cornsilk);
+    margin: 0 auto;
 }

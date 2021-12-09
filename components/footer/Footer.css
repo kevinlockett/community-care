@@ -1,0 +1,38 @@
+.footerStyle {
+    background: var(--clr-neutral-300);
+    width: 100%;
+    font-size: var(--fs-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer__div {
+    width: 33%;
+    padding: 0 var(--spacer);
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__divl {
+    display: flex;
+    align-items: flex-start;
+}
+
+.footer__divc {
+    align-items: center;
+}
+
+.footer__divr {
+    flex-direction: row;
+    justify-content: end;
+}
+
+.footer__logo {
+    max-width: 50%;
+}
+
+.footer__icon {
+    padding: 0 var(--spacer)
+}
+
