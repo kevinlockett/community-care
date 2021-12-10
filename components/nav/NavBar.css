@@ -44,6 +44,7 @@
         padding: min(20vh, 10rem) 2em;
 
         transform: translateX(100%);
+        transition: transform 350ms ease-out;
 
         background: var(--background);
         backdrop-filter: blur(0.1rem);
@@ -67,9 +68,16 @@
         aspect-ratio: 1;
         top: 2rem;
         right: 2rem;
-        border: none;
+        border: 0;
     }
+
+    .mobile-nav-toggle[aria-expanded='true'] {
+        background: url(../img/icon-close.svg);
+    }
+
 }
+
+
 
 .filter-yellow {
     filter: invert(97%) sepia(24%) saturate(5258%) hue-rotate(307deg) brightness(120%) contrast(110%);

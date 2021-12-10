@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import hero from '../img/nash2.png'
 import mechanic from '../img/auto-mechanic.png'
 import mowing from '../img/lawn-mowing.png'
@@ -9,6 +10,13 @@ import schedule from '../img/phone.png'
 import './LandingPage.css'
 
 function Home() {
+
+    const history = useHistory()
+    
+    const handleClick = () => {
+        history.push("/Register")
+    }
+
     return (
         <main id="landingPage" className="landingPage">
             <img src={hero} className="landingPage-hero" alt="City of Nashville" />
@@ -18,18 +26,15 @@ function Home() {
                     At Church of the City, we want to see the fame and deeds of God renewed and known in our time. We have launched a family of churches intent on joining God’s renewal plan by pursuing the way of Jesus in our church and our city. One of our four pursuits is to pursue the spiritul, social and cultural flourishing of our city and its people.  We believe God is moving in our community and is taking us to new places as we partner with Him in the renewal of our city. We would love for you to join us in our pursuit.
                 </p>
                 <p>
-                    If you’re walking through a difficult season or facing significant life challenges (illness, physical limitations, financial challenges, parenting as a single person, or sering as a foster-parent), and need some short-term practical assistance, we want to help.  Or if you want to make a positive difference and are a skilled craftsman or can simply push a broom or paintbrush, we can use your volunteer help.  Click the button to register below and let's get started!
+                    If you’re walking through a difficult season or facing significant life challenges (illness, physical limitations, financial challenges, parenting as a single person, or serving as a foster-parent), and need some short-term practical assistance, we want to help.  Or if you want to make a positive difference and are a skilled craftsman or can push a broom, lawnmower, or a paintbrush, we can use your volunteer help.  Click the button below to register and let's get started!
                 </p>
             </section>
             <section className='get-started'>
                 <h2 className='center'>Ready to get started</h2>
                 <button className='btn-get-started btn'
-                    style={{
-                        cursor: 'pointer'
-                    }}
                     onClick={() => {
-                        
-                    }}>Register</button>
+                        handleClick()                      
+                    }}><span>Register</span></button>
             </section>
             <section className='helpCards'>
                 <h2 className='center'>How we can help</h2>
@@ -85,12 +90,9 @@ function Home() {
             <section className='get-started'>
                 <h2 className='center'>Let's get started!</h2>
                 <button className='btn-get-started btn'
-                    style={{
-                        cursor: 'pointer'
-                    }}
                     onClick={() => {
-                        
-                    }}>Register</button>
+                        handleClick()
+                    }}><span>Register</span></button>
             </section>
 
         </main>

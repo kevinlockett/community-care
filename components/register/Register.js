@@ -19,12 +19,9 @@ function Register() {
                             I want to ask for help. 
                         </p>
                         <button className='btn-get-started btn'
-                        style={{
-                            cursor: 'pointer'
-                        }}
                         onClick={() => {
                             
-                        }}>Register</button>    
+                        }}><span>Register</span></button>    
                     </div>
                     <div className='card'>
                         <img src={volunteers} className='card-img' alt='a group of smiling women wearing t-shirts reading "VOLUNTEER" stand in a cirle, shouder-to-shoulder, touching hed-to-head, looking down at the camera' />
@@ -32,12 +29,9 @@ function Register() {
                             I want to vounteer to help. 
                         </p>
                         <button className='btn-get-started btn'
-                        style={{
-                            cursor: 'pointer'
-                        }}
                         onClick={() => {
                             
-                        }}>Register</button>    
+                        }}><span>Register</span></button>    
                     </div>
                     <div className='card'>
                         <img src={staff} className='card-img' alt='a placeholder of a group of people appearing to be staff members' />
@@ -45,12 +39,9 @@ function Register() {
                             I want to login as a staff member.
                         </p>
                         <button className='btn-get-started btn'
-                        style={{
-                            cursor: 'pointer'
-                        }}
                         onClick={() => {
                             
-                        }}>Login</button>    
+                        }}><span>Login</span></button>    
                     </div>
                 </div>
             </section>

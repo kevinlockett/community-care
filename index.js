@@ -5,6 +5,7 @@ import { CommunityCare } from './components/communityCare/CommunityCare'
 import 'normalize.css'
 import './index.css'
 import './components/fonts.css'
+import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,3 +15,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 )
+
+reportWebVitals()
