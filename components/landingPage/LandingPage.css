@@ -9,8 +9,7 @@
 .cc-intro {
     background-color: var(--background-grn);
     backdrop-filter: blur(1rem);
-    padding: 1em;
-    font-size: var(--fs-300);
+    padding: 2em;
 }
 
 .get-started {
