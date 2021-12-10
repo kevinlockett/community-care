@@ -56,7 +56,7 @@ function NavBar() {
 
                 <button className='mobile-nav-toggle filter-yellow'
                     aria-controls='navbar'
-                    aria-expanded='false'
+                    aria-expanded={navVisibility.isVisible}
                     style={{
                         cursor: 'pointer'
                     }}
