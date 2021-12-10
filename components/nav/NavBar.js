@@ -11,6 +11,27 @@ function NavBar() {
         visibility === false ? setVisibility(true) : setVisibility(false)
     }
 
+    const selectNav = () => {
+        if (localStorage.getItem('registered_user')) {
+            return (
+                <>
+                    <li className='navbar__item active'>
+                        <Link className='navbar__link' to='/'>home</Link>
+                    </li>
+                    <li className='navbar__item active'>
+                        <Link className='navbar__link' to=''>profile</Link>
+                    </li>
+                    <li className='navbar__item active'>
+                        <Link className='navbar__link' to=''>our story</Link>
+                    </li>
+                    <li className='navbar__item active'>
+                        <Link className='navbar__link' to=''>logout</Link>
+                    </li>
+                </>
+            )
+        }
+    }
+
     return (
         <>
             <header id='header' className='header flex'>
@@ -32,19 +53,8 @@ function NavBar() {
                 </button>
 
                 <nav >
-                <ul id='navbar' data-visible={visibility} className='navbar flex'>
-                        <li className='navbar__item active'>
-                            <Link className='navbar__link' to='/'>home</Link>
-                        </li>
-                        <li className='navbar__item active'>
-                            <Link className='navbar__link' to=''>profile</Link>
-                        </li>
-                        <li className='navbar__item active'>
-                            <Link className='navbar__link' to=''>our story</Link>
-                        </li>
-                        <li className='navbar__item active'>
-                            <Link className='navbar__link' to=''>logout</Link>
-                        </li>
+                    <ul id='navbar' data-visible={visibility} className='navbar flex'>
+                        {selectNav()}
                     </ul>
                 </nav>
             </header>
