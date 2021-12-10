@@ -1,50 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import logo from '../img/cotc_logo-300x147.png'
 import './NavBar.css'
 
 function NavBar() {
 
-    const [navVisibility, setNavVisibility] = useState({
-        isVisible: false
-    })
-
-    useEffect(
-        () => {
-            fetch("http://localhost:8088/visibility")
-                .then(res => res.json())
-                .then((data) => {
-                    setNavVisibility(data)
-                })
-        },
-        []
-    )
+    const [visibility, setVisibility] = useState(false)
 
     const showMenu = () => {
-        navVisibility.isVisible === false ? chngMenuVisibility(true) : chngMenuVisibility(false)
-    }
-
-    const history = useHistory()
-
-    const chngMenuVisibility = (bool) => {
-        const newMenuValue = {
-            isVisible: bool
-        }
-
-        return postVisibility(newMenuValue)
-            .then(() => {
-                history.push("/")
-            })
-    }
-
-    const postVisibility = (newMenuValue) => {
-        return fetch("http://localhost:8088/visibility", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newMenuValue)
-        })
+        visibility === false ? setVisibility(true) : setVisibility(false)
     }
 
     return (
@@ -56,7 +20,7 @@ function NavBar() {
 
                 <button className='mobile-nav-toggle filter-yellow'
                     aria-controls='navbar'
-                    aria-expanded={navVisibility.isVisible}
+                    aria-expanded={visibility}
                     style={{
                         cursor: 'pointer'
                     }}
@@ -68,7 +32,7 @@ function NavBar() {
                 </button>
 
                 <nav >
-                    <ul id='navbar' data-visible={navVisibility.isVisible} className='navbar flex'>
+                <ul id='navbar' data-visible={visibility} className='navbar flex'>
                         <li className='navbar__item active'>
                             <Link className='navbar__link' to='/'>home</Link>
                         </li>
