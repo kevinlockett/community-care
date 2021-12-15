@@ -1,4 +1,4 @@
-.footerStyle {
+.container--footer {
     background: var(--clr-neutral-300);
     width: 100%;
     font-size: var(--fs-200);
@@ -35,4 +35,3 @@
 .footer__icon {
     padding: 0 var(--spacer)
 }
-

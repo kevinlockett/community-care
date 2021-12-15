@@ -1,14 +1,14 @@
-.register-hero {
-    width: 70%;
+.hero--afterRegistration {
+    width: 100%;
     display: block;
-    margin: 0 auto 4em;
+    margin: 4em auto;
 }
 
-.register-title {
+.title--afterRegistration {
     color: var(--clr-accent-dk-green);
 }
 
-.registrationCards {
+.afterRegistrationCards {
     display: flex;
     flex-direction: column;
     align-items: center;

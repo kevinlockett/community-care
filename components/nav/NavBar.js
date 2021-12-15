@@ -12,7 +12,7 @@ function NavBar() {
     }
 
     const selectNav = () => {
-        if (localStorage.getItem('registered_user')) {
+        if (localStorage.getItem('communityCare_user')) {
             return (
                 <>
                     <li className='navbar__item active'>
@@ -25,7 +25,23 @@ function NavBar() {
                         <Link className='navbar__link' to=''>our story</Link>
                     </li>
                     <li className='navbar__item active'>
-                        <Link className='navbar__link' to=''>logout</Link>
+                        <Link className='navbar__link' to='#'
+                            onClick={
+                                () => {
+                                    localStorage.removeItem('communityCare_user')
+                                }
+                            }>logout</Link>
+                    </li>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <li className='navbar__item active'>
+                        <Link className='navbar__link' to='/'>home</Link>
+                    </li>
+                    <li className='navbar__item active'>
+                        <Link className='navbar__link' to=''>our story</Link>
                     </li>
                 </>
             )
@@ -34,7 +50,7 @@ function NavBar() {
 
     return (
         <>
-            <header id='header' className='header flex'>
+            <header id='container--header' className='container--header flex'>
                 <div>
                     <img src={logo} className="header-logo" alt="logo" />
                 </div>
