@@ -3,7 +3,7 @@
     gap: var(--gap, .5rem);
 }
 
-.header {
+.container--header {
     background: var(--clr-neutral-300);
     align-items: center;
     justify-content: space-between;

@@ -1,7 +1,14 @@
 import React from 'react'
 import { Route } from "react-router-dom"
 import Home from './landingPage/LandingPage'
-import Register from './register/Register'
+import Register from './auth/Register'
+import Login from './auth/Login'
+import AfterRegistration from './afterRegistration/AfterRegistration'
+import NeedHelpForm from './needHelp/NeedHelpForm'
+import NeedHelpStatus from './needHelp/NeedHelpStatus'
+import VolunteerForm from './volunteer/VolunteerForm'
+import VolunteerStatus from './volunteer/VolunteerStatus'
+import StaffReviewList from './staff/StaffReviewList'
 
 export const ApplicationViews = () => {
     return (
@@ -11,6 +18,27 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/Register">
                 <Register />
+            </Route>
+            <Route exact path="/Login">
+                <Login />
+            </Route>
+            <Route exact path="/AfterRegistration">
+                <AfterRegistration />
+            </Route>
+            <Route exact path="/GetHelp">
+                <NeedHelpForm />
+            </Route>
+            <Route exact path="/CheckRequestStatus">
+                <NeedHelpStatus />
+            </Route>
+            <Route exact path="/Volunteer">
+                <VolunteerForm />
+            </Route>
+            <Route exact path="/VolunteerStatus">
+                <VolunteerStatus />
+            </Route>
+            <Route exact path="/loginStaff">
+                <StaffReviewList />
             </Route>
         </>
     )

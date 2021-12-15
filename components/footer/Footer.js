@@ -6,7 +6,7 @@ import './Footer.css'
 
 function Footer() {
     return (
-        <footer id="footer" className="footerStyle">
+        <footer id="container--footer" className="container--footer">
             <div className='footer__div footer__divl'>
                 <p className='footer-copy'>&copy; 2021 Kevin Lockett</p>
             </div>
