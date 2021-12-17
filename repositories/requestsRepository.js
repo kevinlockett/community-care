@@ -11,6 +11,11 @@ export const postRequest = (request) => {
         .then(res => res.json())
 }
 
+export const getAllRequests = () => {
+    return fetch(`${API}/requests`)
+        .then(res => res.json())
+}
+
 export const getAllRequestsWithUsers = () => {
     return fetch(`${API}/requests?_expand=user`)
         .then(res => res.json())

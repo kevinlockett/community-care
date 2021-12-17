@@ -4,6 +4,7 @@ import { getThisUser, getAllUsers } from '../../repositories/usersRepository'
 import { getAllTasks } from '../../repositories/tasksRepository'
 import { getAllOffersWithUsers, deleteOffer } from '../../repositories/volunteerRepository'
 import { getAllRequestsWithUsers } from '../../repositories/requestsRepository'
+import { getAllAssignments, addAssignment } from '../../repositories/assignmentsRepository'
 import hero from '../img/volunteer-text.png'
 import approved from '../img/approved-sm.png'
 import './VolunteerStatus.css'
@@ -20,6 +21,7 @@ function VolunteerStatus() {
     const [ approvedRequests, setApprovedRequests ] = useState([])
     const [ matches, setMatches ] = useState([])
     const [ users, setUsers ] = useState([])
+    const [ assignments, setAssignments] = useState([])
 
     useEffect(
         () => {
@@ -56,6 +58,16 @@ function VolunteerStatus() {
             getAllUsers()
             .then((users) => {
                 setUsers(users)
+            })
+        },
+        []
+    )
+
+    useEffect(
+        () => {
+            getAllAssignments()
+            .then((assignments) => {
+                setUsers(assignments)
             })
         },
         []
