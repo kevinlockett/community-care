@@ -31,6 +31,17 @@ export const getAllOffersWithUsers = () => {
         .then(res => res.json())
 }
 
+export const updateOffer = (offer) => {
+    return fetch(`${API}/offers/${offer.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(offer)
+    })
+        .then(res => res.json())
+}
+
 export const deleteOffer = (id) => {
     return fetch(`${API}/offers/${id}`, {method: 'DELETE'})
 }

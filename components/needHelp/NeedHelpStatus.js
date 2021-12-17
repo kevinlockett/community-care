@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getThisUser } from '../../repositories/usersRepository'
 import { getAllRequestsWithUsers, deleteRequest } from '../../repositories/requestsRepository'
-import { getAllTasks } from '../../repositories/tasksRepsitory'
+import { getAllTasks } from '../../repositories/tasksRepository'
 import hero from '../img/volunteer-text.png'
 import approved from '../img/approved-sm.png'
 import './NeedHelpStatus.css'

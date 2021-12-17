@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getThisUser, updateUser } from '../../repositories/usersRepository'
-import { getAllTasks } from '../../repositories/tasksRepsitory'
+import { getAllTasks } from '../../repositories/tasksRepository'
 import { postRequest } from '../../repositories/requestsRepository'
 import { useHistory } from 'react-router-dom'
 

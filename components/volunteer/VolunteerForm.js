@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { getThisUser, updateUser } from '../../repositories/usersRepository'
-import { getAllTasks } from '../../repositories/tasksRepsitory'
+import { getAllTasks } from '../../repositories/tasksRepository'
 import { postVolunteerSelections } from '../../repositories/volunteerRepository'
 
 import hero from '../img/volunteer-text.png'

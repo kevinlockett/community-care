@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getThisUser, getAllUsers } from '../../repositories/usersRepository'
-import { getAllTasks } from '../../repositories/tasksRepsitory'
+import { getAllTasks } from '../../repositories/tasksRepository'
 import { getAllOffersWithUsers, deleteOffer } from '../../repositories/volunteerRepository'
 import { getAllRequestsWithUsers } from '../../repositories/requestsRepository'
 import hero from '../img/volunteer-text.png'
@@ -60,7 +60,6 @@ function VolunteerStatus() {
         },
         []
     )
-
 
     useEffect(
         () => {
