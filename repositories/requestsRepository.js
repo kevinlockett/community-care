@@ -11,13 +11,11 @@ export const postRequest = (request) => {
         .then(res => res.json())
 }
 
-export const updateVolunteer = (user) => {
-    return fetch(`${API}/users/${user.id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-    })
+export const getAllRequestsWithUsers = () => {
+    return fetch(`${API}/requests?_expand=user`)
         .then(res => res.json())
+}
+
+export const deleteRequest = (id) => {
+    return fetch(`${API}/requests/${id}`, {method: 'DELETE'})
 }

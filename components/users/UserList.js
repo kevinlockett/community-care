@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { getAllUsers } from '../../repositories/usersRepository'
-import hero from '../img/networking.png'
+import hero from '../img/volunteer-text.png'
 
-function Staff() {
+function Users() {
 
     const [ users, setUsers ] = useState([])
 
@@ -18,7 +18,7 @@ function Staff() {
 
     return (
 
-        <main id="container--Staff" className="container--Staff">
+        <main id="container--Users" className="container--VolunteerStatus">
             <img src={hero} className="hero--Users" alt="People worshipping at Church of the City Franklin" />
 
             <div>
@@ -45,4 +45,4 @@ function Staff() {
     )
 }
 
-export default Staff
+export default Users

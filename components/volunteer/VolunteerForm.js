@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { getThisUser } from '../../repositories/usersRepository'
+import { getThisUser, updateUser } from '../../repositories/usersRepository'
 import { getAllTasks } from '../../repositories/tasksRepsitory'
-import { postVolunteerSelections, updateVolunteer } from '../../repositories/volunteerRepository'
+import { postVolunteerSelections } from '../../repositories/volunteerRepository'
 
 import hero from '../img/volunteer-text.png'
 import './VolunteerForm.css'
@@ -50,7 +50,7 @@ function VolunteerForm() {
         e.preventDefault()
         const copy = {...thisUser}
         copy.volunteer = true
-        updateVolunteer(copy)
+        updateUser(copy)
             .then (
                 () => {
             
