@@ -26,6 +26,11 @@ export const updateVolunteer = (user) => {
         .then(res => res.json())
 }
 
+export const getAllOffers = () => {
+    return fetch(`${API}/offers`)
+        .then(res => res.json())
+}
+
 export const getAllOffersWithUsers = () => {
     return fetch(`${API}/offers?_expand=user`)
         .then(res => res.json())

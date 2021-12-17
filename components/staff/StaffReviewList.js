@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getAllUsers, updateUser, getThisUser } from '../../repositories/usersRepository'
-import { getAllRequestsWithUsers, deleteRequest, updateRequest } from '../../repositories/requestsRepository'
-import { getAllOffersWithUsers, deleteOffer, updateOffer } from '../../repositories/volunteerRepository'
+import { getAllRequests, getAllRequestsWithUsers, deleteRequest, updateRequest } from '../../repositories/requestsRepository'
+import { getAllOffers, getAllOffersWithUsers, deleteOffer, updateOffer } from '../../repositories/volunteerRepository'
 import { getAllTasks } from '../../repositories/tasksRepository'
 import hero from '../img/networking.png'
 import approved from '../img/approved-sm.png'
@@ -10,8 +10,10 @@ function Staff() {
 
     const [ thisUser, setThisUser ] = useState({})
     const [ users, setUsers ] = useState([])
-    const [ requests, setRequests ] = useState([])
-    const [ offers, setOffers ] = useState([])
+    const [ allRequests, setAllRequests ] = useState([])
+    const [ requestsWithUsers, setRequestsWithUsers ] = useState([])
+    const [ allOffers, setAllOffers ] = useState([])
+    const [ offersWithUsers, setOffersWithUsers ] = useState([])
     const [ requestors, setRequestors ] = useState([])
     const [ volunteers, setVolunteers ] = useState([])
     const [ tasks, setTasks ] = useState([])
@@ -38,9 +40,29 @@ function Staff() {
 
     useEffect(
         () => {
+            getAllRequests()
+            .then((requests) => {
+                setAllRequests(requests)
+            })
+        },
+        []
+    )
+
+    useEffect(
+        () => {
             getAllRequestsWithUsers()
             .then((requests) => {
-                setRequests(requests)
+                setRequestsWithUsers(requests)
+            })
+        },
+        []
+    )
+
+    useEffect(
+        () => {
+            getAllOffers()
+            .then((offers) => {
+                setAllOffers(offers)
             })
         },
         []
@@ -50,7 +72,7 @@ function Staff() {
         () => {
             getAllOffersWithUsers()
             .then((offers) => {
-                setOffers(offers)
+                setOffersWithUsers(offers)
             })
         },
         []
@@ -83,12 +105,12 @@ function Staff() {
     )
 
         const filterRequests = (id) => {
-            const filteredRequests = requests.filter(r => r.userId === id)
+            const filteredRequests = requestsWithUsers.filter(r => r.userId === id)
             return filteredRequests
         }
 
         const filterOffers = (id) => {
-            const filteredOffers = offers.filter(o => o.userId === id)
+            const filteredOffers = offersWithUsers.filter(o => o.userId === id)
             return filteredOffers
         }
 
@@ -99,26 +121,31 @@ function Staff() {
         }
 
         const approveRequest = (id) => {
-            const foundRequest = requests.find(r => r.id === id)
+            const foundRequest = allRequests.find(r => r.id === id)
             foundRequest.approverId = thisUser.id
             updateRequest(foundRequest)
             .then(()=>{getAllRequestsWithUsers()
                 .then((requests) => {
-                    setRequests (requests)
+                    setRequestsWithUsers (requests)
                 })
             })
         }
 
         const approveOffer = (id) => {
-            const foundOffer = offers.find(o => o.id === id)
+            const foundOffer = allOffers.find(o => o.id === id)
             foundOffer.approverId = thisUser.id
             updateOffer(foundOffer)
-            .then(()=>{getAllRequestsWithUsers()
+            .then(()=>{getAllOffersWithUsers()
                 .then((requests) => {
-                    setRequests (requests)
+                    setOffersWithUsers (requests)
                 })
             })
         }
+
+        
+
+
+
 
     return (
 
@@ -165,7 +192,7 @@ function Staff() {
                                                             deleteRequest(request.id)
                                                                 .then(()=>{getAllRequestsWithUsers()
                                                                     .then((requests) => {
-                                                                        setRequests(requests)
+                                                                        setRequestsWithUsers(requests)
                                                                     })
                                                                 })
                                                             }}>Delete</button>
@@ -223,7 +250,7 @@ function Staff() {
                                                         deleteOffer(offer.id)
                                                             .then(()=>{getAllOffersWithUsers()
                                                                 .then((offers) => {
-                                                                    setOffers(offers)
+                                                                    setOffersWithUsers(offers)
                                                                 })
                                                             })
                                                     }}>Delete</button>
