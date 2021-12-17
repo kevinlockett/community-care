@@ -21,6 +21,17 @@ export const addUser = (user) => {
         .then(res => res.json())
 }
 
+export const updateUser = (user) => {
+    return fetch(`${API}/users/${user.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+        .then(res => res.json())
+}
+
 export const getExistingUserEmail = (email) => {
     return fetch(`${API}/users?email=${email}`)
         .then(res => res.json())

@@ -16,7 +16,7 @@ function NavBar() {
             return (
                 <>
                     <li className='navbar__item active'>
-                        <Link className='navbar__link' to='/'>home</Link>
+                        <Link className='navbar__link' to='/AfterRegistration'>home</Link>
                     </li>
                     <li className='navbar__item active'>
                         <Link className='navbar__link' to=''>profile</Link>
@@ -25,7 +25,7 @@ function NavBar() {
                         <Link className='navbar__link' to=''>our story</Link>
                     </li>
                     <li className='navbar__item active'>
-                        <Link className='navbar__link' to='#'
+                        <Link className='navbar__link' to='/' 
                             onClick={
                                 () => {
                                     localStorage.removeItem('communityCare_user')

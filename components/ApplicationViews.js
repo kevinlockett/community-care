@@ -9,6 +9,7 @@ import NeedHelpStatus from './needHelp/NeedHelpStatus'
 import VolunteerForm from './volunteer/VolunteerForm'
 import VolunteerStatus from './volunteer/VolunteerStatus'
 import StaffReviewList from './staff/StaffReviewList'
+import UserList from './users/UserList'
 
 export const ApplicationViews = () => {
     return (
@@ -36,6 +37,12 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/VolunteerStatus">
                 <VolunteerStatus />
+            </Route>
+            <Route exact path="/users">
+                <UserList />
+            </Route>
+            <Route path="/users/:userId">
+                <UserList />
             </Route>
             <Route exact path="/loginStaff">
                 <StaffReviewList />

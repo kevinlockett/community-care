@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { getThisUser } from '../../repositories/usersRepository'
-import { getAllTasks } from '../../repositories/tasksRepsitory'
+import { getThisUser, updateUser } from '../../repositories/usersRepository'
+import { getAllTasks } from '../../repositories/tasksRepository'
 import { postRequest } from '../../repositories/requestsRepository'
 import { useHistory } from 'react-router-dom'
 
@@ -36,18 +36,25 @@ function NeedHelpForm() {
     
     const submitRequest = (e) => {
         e.preventDefault()
-        const newRequest = {
-            userId: +localStorage.getItem("communityCare_user"),
-            approverId: null,
-            taskId: parseInt(request.taskId),
-            details: request.details,
-            dateNeeded: request.dateNeeded
-        }
+        const copy = {...thisUser}
+        copy.needsHelp = true
+        updateUser(copy)
+            .then (
+                () => {
+                    const newRequest = {
+                        userId: +localStorage.getItem("communityCare_user"),
+                        approverId: 0,
+                        taskId: parseInt(request.taskId),
+                        details: request.details,
+                        dateNeeded: request.dateNeeded
+                    }
 
-        return postRequest(newRequest)
-            .then(() => {
-                history.push("/CheckRequestStatus")
-            })
+                    return postRequest(newRequest)
+                        .then(() => {
+                        history.push("/CheckRequestStatus")
+                        })
+                }
+            )        
     }
 
     return (
