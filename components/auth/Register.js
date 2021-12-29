@@ -20,7 +20,7 @@ function Register(props) {
         volunteer: false,
         needsHelp: false
     })
-    
+        
     const conflictDialog = useRef()
     
     const existingUserCheck = () => {
@@ -29,7 +29,7 @@ function Register(props) {
     }
     
     const history = useHistory()
-    
+
     const handleRegister = (e) => {
         e.preventDefault()
         existingUserCheck()
@@ -65,6 +65,8 @@ function Register(props) {
         copy.staff = Boolean(e.target.value)
         setRegisteredUser(copy)
     }
+
+
 
     return (
         <main id="container--register" className="container--register">

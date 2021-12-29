@@ -5,14 +5,19 @@ import { postRequest } from '../../repositories/requestsRepository'
 import { useHistory } from 'react-router-dom'
 
 import hero from '../img/help.png'
-import './NeedHelpForm.css'
+import './requests.css'
 
-function NeedHelpForm() {
+function RequestForm() {
 
     const [ thisUser, updateThisUser ] = useState({})
     const [ tasks, updateTasks ] = useState([])
     const [ request, updateRequest ] = useState({})
     const history = useHistory()
+
+
+    const handleEditProfileClick = () => {
+        history.push("/EditProfile")
+    }
 
     useEffect(
         () => {
@@ -58,18 +63,18 @@ function NeedHelpForm() {
     }
 
     return (
-        <main id="container--needHelp" className="container--needHelp">
+        <main id="container--request" className="container--request">
             <img src={hero} className="hero--heedHelp" alt="hands reaching out toward each other" />
-            <section className='form--needHelp' id='form--needHelp'>
+            <section className='form--request' id='form--request'>
                 
             
-                <h1 className='center title--needHelp' >Thanks for reaching out!</h1>
-                <section className='intro--needHelp'>
+                <h1 className='center title--request' >Thanks for reaching out!</h1>
+                <section className='intro--request'>
                     <p>
                         {thisUser?.first_name}, we believe helping others is one way we can practice the way of Jesus. If you’re walking through a difficult season or facing significant life challenges &#8212; perhaps an illness or physical limitation, or maybe doing the hard work of parenting as a single person, or serving as a foster-parent, you shouldn't have to do it all alone. We want to help as we are able.  Let's get started!
                     </p>
                 </section>
-                <section className='userProfile--needHelp' >
+                <section className='userProfile--request' >
                     <div>
                         Name: {thisUser.first_name} {thisUser.last_name}
                     </div>
@@ -86,7 +91,7 @@ function NeedHelpForm() {
                         <p>If any of this information is not correct, please click the button below to edit your profile.</p>
                         <button className='btn btn--edit-profile'
                         onClick={() => {
-
+                            handleEditProfileClick()
                         }}><span>Edit Profile</span></button>
                     </div>
                 </section>
@@ -145,7 +150,7 @@ function NeedHelpForm() {
                             />
                         </fieldset>
                         <fieldset>
-                            <button type="submit" className="btn btn--requestHelp" onClick={submitRequest} > Submit Request </button>
+                            <button type="submit" className="btn btn--requestHelp" onClick={submitRequest} ><span> Submit Request </span></button>
                         </fieldset>
                     </form>
                 </section>
@@ -155,4 +160,4 @@ function NeedHelpForm() {
 
 }
 
-export default NeedHelpForm
+export default RequestForm

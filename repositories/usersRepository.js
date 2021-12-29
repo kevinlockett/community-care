@@ -1,4 +1,4 @@
-import API from './Settings'
+import { API } from './Settings'
 
 export const getAllUsers = () => {
     return fetch(`${API}/users`)
@@ -8,6 +8,11 @@ export const getAllUsers = () => {
 export const getThisUser = (thisUser) => {
     return fetch(`${API}/users/${thisUser}`)
         .then(res => res.json())
+}
+
+export const getUserByIdWithRequestsAndOffers = userId => {
+    return fetch(`${API}/users/${userId}?_embed=requests&_embed=offers`)
+    .then(res => res.json())
 }
 
 export const addUser = (user) => {
@@ -37,3 +42,4 @@ export const getExistingUserEmail = (email) => {
         .then(res => res.json())
 }
 
+// http://localhost:8088/users?_embed=requests

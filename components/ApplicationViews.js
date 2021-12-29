@@ -4,11 +4,14 @@ import Home from './landingPage/LandingPage'
 import Register from './auth/Register'
 import Login from './auth/Login'
 import AfterRegistration from './afterRegistration/AfterRegistration'
-import NeedHelpForm from './needHelp/NeedHelpForm'
-import NeedHelpStatus from './needHelp/NeedHelpStatus'
-import VolunteerForm from './volunteer/VolunteerForm'
-import VolunteerStatus from './volunteer/VolunteerStatus'
+import RequestForm from './requests/RequestForm'
+import RequestStatus from './requests/RequestStatus'
+import VolunteerForm from './volunteers/VolunteerForm'
+import VolunteerStatus from './volunteers/VolunteerStatus'
+import RequestDetails from './requests/RequestDetails'
 import StaffReviewList from './staff/StaffReviewList'
+import EditProfile from './editProfile/EditProfile'
+import CompletionReport from './completions/CompletionForm'
 import UserList from './users/UserList'
 
 export const ApplicationViews = () => {
@@ -27,10 +30,10 @@ export const ApplicationViews = () => {
                 <AfterRegistration />
             </Route>
             <Route exact path="/GetHelp">
-                <NeedHelpForm />
+                <RequestForm />
             </Route>
             <Route exact path="/CheckRequestStatus">
-                <NeedHelpStatus />
+                <RequestStatus />
             </Route>
             <Route exact path="/Volunteer">
                 <VolunteerForm />
@@ -38,14 +41,20 @@ export const ApplicationViews = () => {
             <Route exact path="/VolunteerStatus">
                 <VolunteerStatus />
             </Route>
-            <Route exact path="/users">
-                <UserList />
+            <Route exact path="/RequestDetails/:requestId(\d+)">
+                <RequestDetails />
             </Route>
-            <Route path="/users/:userId">
-                <UserList />
-            </Route>
-            <Route exact path="/loginStaff">
+            <Route exact path="/LoginStaff">
                 <StaffReviewList />
+            </Route>
+            <Route exact path="/EditProfile">
+                <EditProfile />
+            </Route>
+            <Route exact path="/CompletionReport">
+                <CompletionReport />
+            </Route>
+            <Route exact path="/Users">
+                <UserList />
             </Route>
         </>
     )
