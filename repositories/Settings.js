@@ -1,3 +1,1 @@
-const API = "http://localhost:8088"
-
-export default API
+export const API = "http://localhost:8088"

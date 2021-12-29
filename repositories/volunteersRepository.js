@@ -1,4 +1,4 @@
-import API from "./Settings"
+import { API } from "./Settings"
 
 export const postVolunteerSelections = (selectedTaskId) => {
     return fetch(`${API}/offers`, {
@@ -50,3 +50,4 @@ export const updateOffer = (offer) => {
 export const deleteOffer = (id) => {
     return fetch(`${API}/offers/${id}`, {method: 'DELETE'})
 }
+

@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { getThisUser } from '../../repositories/usersRepository'
+import { getThisUser, getAllUsers } from '../../repositories/usersRepository'
 import { getAllRequestsWithUsers, deleteRequest } from '../../repositories/requestsRepository'
 import { getAllTasks } from '../../repositories/tasksRepository'
+import { getAllAssignments } from '../../repositories/assignmentsRepository'
 import hero from '../img/volunteer-text.png'
 import approved from '../img/approved-sm.png'
-import './NeedHelpStatus.css'
+import './requests.css'
 
-function NeedHelpStatus() {
+function RequestStatus() {
 
     const [ thisUser, updateThisUser ] = useState({})
+    const [ allUsers, setAllUsers ] = useState([])
     const [ tasks, setTasks ] = useState([])
     const [ requests, updateRequests ] = useState([])
     const [ requestsByThisUser, setRequestsByThisUser ] = useState([])
     const [ approvedRequests, setApprovedRequests ] = useState([])
     const [ nonApprovedRequests, setNonApprovedRequests ] = useState([])
+    const [ assignments, setAssignments ] = useState([])
+    const [ assignmentsForThisUser, setAssignmentsForThisUser ] = useState([])
     const [ requestCount, setRequestCount ] = useState('')
 
     useEffect(
@@ -41,6 +45,26 @@ function NeedHelpStatus() {
             getAllTasks()
             .then((tasks) => {
                 setTasks(tasks)
+            })
+        },
+        []
+    )
+
+    useEffect(
+        () => {
+            getAllAssignments()
+            .then((assignments) => {
+                setAssignments(assignments)
+            })
+        },
+        []
+    )
+
+    useEffect(
+        () => {
+            getAllUsers()
+            .then((users) => {
+                setAllUsers(users)
             })
         },
         []
@@ -78,10 +102,24 @@ function NeedHelpStatus() {
         [requestsByThisUser]
     )
 
+    useEffect(
+        () => {
+            const foundHelp = assignments.filter(a => a.request.userId === thisUser.id)
+            setAssignmentsForThisUser(foundHelp)
+        },
+        [assignments]
+    )
+
     const findTask = (taskId) => {
         const foundTask = tasks.find(t => t.id === taskId)
         const taskName = foundTask?.task
         return taskName
+    }
+
+    const findName = (id) => {
+        const foundUser = allUsers.find(u => u.id === id)
+        const userName = `${foundUser.first_name}  ${foundUser.last_name}`
+        return userName 
     }
 
     return (
@@ -143,7 +181,7 @@ function NeedHelpStatus() {
                         : ""
                     }
                 </h3>
-                <div className = 'list--nonApprovedRequests' >
+                <div className = 'list--approvedRequests' >
                     {
                         approvedRequests.map(
                             (request) => {
@@ -157,15 +195,10 @@ function NeedHelpStatus() {
                             }
                         )
                     }
-                    <p className='instruction--nonApprovedRequests'>
+                    <p className='instruction--approvedRequests'>
                         {
-                            approvedRequests.length === 1 ? "This request has been reviewed by our staff and"
-                            : approvedRequests.length > 1 ? "These requests have been reviewed by our staff and"
-                            : ""
-                        }
-                        {
-                            approvedRequests.length === 1 ? " is "
-                            : approvedRequests.length > 1 ? "are "
+                            approvedRequests.length === 1 ? "This request has been reviewed by our staff and is "
+                            : approvedRequests.length > 1 ? "These requests have been reviewed by our staff and are "
                             : ""
                         }
                         {
@@ -173,8 +206,47 @@ function NeedHelpStatus() {
                             : ""
                         }
                     </p>
-                    <p>Please let us know if you have a further need or we can help you in the future.</p>
                 </div>
+                <div className = 'list--helpIsOnTheWay' >
+                <h3>
+                    {
+                        assignmentsForThisUser ? "Help is on the way!" : ""
+                    }
+                </h3>
+
+
+
+                {   
+                    assignmentsForThisUser ?
+                    assignments
+                        .filter(assignment => assignment.request.userId === thisUser.id)
+                        .map(
+                            (assignment) => {
+                                return <div key={`assignment--${assignment.id}`}>
+                                    <div>
+                                        {`${findName(assignment.offer.userId)} `} has volunteered to assist you with 
+                                        {` ${findTask(assignment.request.taskId)}.`}
+                                    </div>
+                                </div>
+                            }
+                        )
+                    : ""
+                }
+                <p className='instruction--nonApprovedRequests'>
+                    {
+                        assignmentsForThisUser.length === 1 ? "This volunteer "
+                        : assignmentsForThisUser.length > 1 ? "These volunteers "
+                        : ""
+                    }
+                    {
+                        approvedRequests.length >= 1 ? "will be contacting you shortly to schedule a time to assist you."
+                        : ""
+                    }
+                </p>
+            </div>
+            <div>
+                <p>Please let us know if you have a further need or we can help you in the future.</p>
+            </div>
             </section>
         </main>
     )
@@ -182,4 +254,4 @@ function NeedHelpStatus() {
 
 }
 
-export default NeedHelpStatus
+export default RequestStatus

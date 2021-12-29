@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { getAllUsers, updateUser, getThisUser } from '../../repositories/usersRepository'
+import { getAllUsers } from '../../repositories/usersRepository'
 import { getAllRequests, getAllRequestsWithUsers, deleteRequest, updateRequest } from '../../repositories/requestsRepository'
-import { getAllOffers, getAllOffersWithUsers, deleteOffer, updateOffer } from '../../repositories/volunteerRepository'
+import { getAllOffers, getAllOffersWithUsers, deleteOffer, updateOffer } from '../../repositories/volunteersRepository'
 import { getAllTasks } from '../../repositories/tasksRepository'
 import hero from '../img/networking.png'
 import approved from '../img/approved-sm.png'
 
 function Staff() {
 
-    const [ thisUser, setThisUser ] = useState({})
     const [ users, setUsers ] = useState([])
     const [ allRequests, setAllRequests ] = useState([])
     const [ requestsWithUsers, setRequestsWithUsers ] = useState([])
@@ -20,19 +19,9 @@ function Staff() {
         
     useEffect(
         () => {
-            getThisUser(localStorage.getItem('communityCare_user'))
-            .then((user) => {
-                setThisUser(user)
-            })
-        },
-        []
-    )
-    
-    useEffect(
-        () => {
             getAllUsers()
-            .then((offers) => {
-                setUsers(offers)
+            .then((users) => {
+                setUsers(users)
             })
         },
         []
@@ -122,7 +111,7 @@ function Staff() {
 
         const approveRequest = (id) => {
             const foundRequest = allRequests.find(r => r.id === id)
-            foundRequest.approverId = thisUser.id
+            foundRequest.approverId = parseInt(localStorage.getItem("communityCare_user"))
             updateRequest(foundRequest)
             .then(()=>{getAllRequestsWithUsers()
                 .then((requests) => {
@@ -133,7 +122,7 @@ function Staff() {
 
         const approveOffer = (id) => {
             const foundOffer = allOffers.find(o => o.id === id)
-            foundOffer.approverId = thisUser.id
+            foundOffer.approverId = parseInt(localStorage.getItem("communityCare_user"))
             updateOffer(foundOffer)
             .then(()=>{getAllOffersWithUsers()
                 .then((requests) => {

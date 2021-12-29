@@ -1,4 +1,4 @@
-import API from './Settings'
+import { API } from "./Settings"
 
 export const getAllTasks = () => {
     return fetch(`${API}/tasks`)

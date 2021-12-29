@@ -51,7 +51,7 @@ function Login() {
                                 required autoFocus />
                         </fieldset>
                         <fieldset>
-                            <button className="btn btn--sign-in" type="submit">Sign in</button>
+                            <button className="btn btn--sign-in" type="submit"><span>Sign in</span></button>
                         </fieldset>
                     </form>
                 </section>
