@@ -242,6 +242,7 @@ function VolunteerStatus() {
                                                 newAssignment.requestId = match.id
                                                 newAssignment.taskId = match.taskId
                                                 newAssignment.completed = false
+                                                newAssignment.lengthInHours = 0
                                                 acceptAssignment(newAssignment)
                                                 
                                             }   
