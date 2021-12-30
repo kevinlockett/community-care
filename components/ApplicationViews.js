@@ -12,7 +12,7 @@ import RequestDetails from './requests/RequestDetails'
 import StaffReviewList from './staff/StaffReviewList'
 import EditProfile from './editProfile/EditProfile'
 import CompletionReport from './completions/CompletionForm'
-import UserList from './users/UserList'
+import ServiceStories from './serviceStories/ServiceStories'
 
 export const ApplicationViews = () => {
     return (
@@ -53,8 +53,8 @@ export const ApplicationViews = () => {
             <Route exact path="/CompletionReport">
                 <CompletionReport />
             </Route>
-            <Route exact path="/Users">
-                <UserList />
+            <Route exact path="/ServiceStories">
+                <ServiceStories />
             </Route>
         </>
     )

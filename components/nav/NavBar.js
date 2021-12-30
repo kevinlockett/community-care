@@ -1,11 +1,86 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getThisUser } from '../../repositories/usersRepository'
+import { getAllRequests } from '../../repositories/requestsRepository'
+import { getAllOffers } from '../../repositories/volunteersRepository'
 import logo from '../img/cotc_logo-300x147.png'
 import './NavBar.css'
 
 function NavBar() {
 
+    const [ thisUser, setThisUser ] = useState({})
+    const [ requests, setRequests ] = useState([])
+    const [ requestByThisUser, setRequestByThisUser ] = useState ({})
+    const [ offers, setOffers ] = useState([])
+    const [ offerByThisUser, setOfferByThisUser ] = useState ({})
     const [visibility, setVisibility] = useState(false)
+    const [ navTitle, setNavTitle ] = useState("")
+    const [ linkMsg, setLinkMsg ] = useState("")
+
+    useEffect(
+        () => {
+            getThisUser(parseInt(localStorage.getItem('communityCare_user')))
+            .then((user) => {
+                setThisUser(user)
+            })
+        },
+        []
+    )
+
+    useEffect(
+        () => {
+            getAllRequests()
+            .then((request) => {
+                setRequests(request)
+            })
+        },
+        []
+    )
+
+    useEffect(
+        () => {
+            const foundRequest = requests.find(request => request.userId === thisUser.id)
+            setRequestByThisUser(foundRequest)
+        },
+        []
+    )
+
+    useEffect(
+        () => {
+            getAllOffers()
+            .then((offers) => {
+                setOffers(offers)
+            })
+        },
+        []
+    )
+
+    
+    
+    useEffect(
+        () => {
+            const foundOffer = offers.find(offer => offer.userId === thisUser.id)
+            setOfferByThisUser(foundOffer)
+        },
+        []
+    )
+
+    useEffect(
+        () => {
+            requestByThisUser || offerByThisUser ? setNavTitle('Check Status')
+            : setNavTitle('Profile')
+        },
+        []
+    )
+
+    useEffect(
+        () => {
+            requestByThisUser && !offerByThisUser ? setLinkMsg('/CheckRequestStatus')
+            : offerByThisUser && !requestByThisUser ? setLinkMsg('/VolunteerStatus')
+            : setLinkMsg('/EditProfile')
+        },
+        []
+    )
 
     const showMenu = () => {
         visibility === false ? setVisibility(true) : setVisibility(false)
@@ -19,10 +94,10 @@ function NavBar() {
                         <Link className='navbar__link' to='/AfterRegistration'>home</Link>
                     </li>
                     <li className='navbar__item active'>
-                        <Link className='navbar__link' to=''>profile</Link>
+                        <Link className='navbar__link' to={linkMsg}>{navTitle}</Link>
                     </li>
                     <li className='navbar__item active'>
-                        <Link className='navbar__link' to=''>our story</Link>
+                        <Link className='navbar__link' to='/ServiceStories'>our story</Link>
                     </li>
                     <li className='navbar__item active'>
                         <Link className='navbar__link' to='/' 
