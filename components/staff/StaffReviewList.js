@@ -5,6 +5,7 @@ import { getAllOffers, getAllOffersWithUsers, deleteOffer, updateOffer } from '.
 import { getAllTasks } from '../../repositories/tasksRepository'
 import hero from '../img/networking.png'
 import approved from '../img/approved-sm.png'
+import './StaffReviewList.css'
 
 function Staff() {
 
@@ -138,123 +139,134 @@ function Staff() {
 
     return (
 
-        <main id="container--Staff" className="container--Staff">
-            <img src={hero} className="hero--Staff" alt="Networking word art" />
+        <main className="container--staff">
 
-            <div>
-                <h1>The following individuals are seeking assistance:</h1>
-                {
-                    requestors.map(
-                        (requestor) => {
-                            return <dl key={`user--${requestor.id}`}>
-                                <dt>User seeking assistance:</dt>                               
-                                <dd>{requestor.first_name} {requestor.last_name}</dd>
-                                <dd>{requestor.address}</dd>
-                                {
-                                    requestor.apt ? <dd>{requestor.apt}</dd>
-                                    : ""
-                                }
-                                <dd>{requestor.city}, TN &nbsp; {requestor.zipcode}</dd>
-                                <dd>Phone: {requestor.phone}</dd>
-                                <dd>Email: {requestor.email}</dd>
-                                <dd> Needs assistance with:
-                                    {
-                                        filterRequests(requestor.id).map(
-                                            (request) => {
-                                                return <dl key={`user--${request.id}`}>
-                                                    <dd>
-                                                        {
-                                                            request.approverId > 0 ? <img src={approved} alt="approved" /> : ""
-                                                        }
-                                                        {` ${findTask(request.taskId)} `}
-                                                        {
-                                                            request.approverId === 0
-                                                            ? <button
-                                                                className="button__approve"
-                                                                onClick={() => {
-                                                                    approveRequest(request.id)                                                            
-                                                                }}>Approve</button>
-                                                            : ""
-                                                        }
-                                                        
-                                                        <button className="button__delete" onClick={() => {
-                                                            deleteRequest(request.id)
-                                                                .then(()=>{getAllRequestsWithUsers()
-                                                                    .then((requests) => {
-                                                                        setRequestsWithUsers(requests)
-                                                                    })
-                                                                })
-                                                            }}>Delete</button>
-                                                        
-                                                    </dd>
-
-                                                </dl>
-                                            }
-                                        )
-                                    } 
-                                </dd>
-                            </dl>
-                        }
-                    )
-                }
+            <div className='staff--header'>
+                <img src={hero} className="hero--staff" alt="" />
             </div>
 
+            <article className='staff--article'>
+                <h1 className='center staff--title' >Please review the requests and offers below:</h1>
 
-            <div>
-                <h1>Community Care volunteers:</h1>
-                {
-                    volunteers.map(
-                        (volunteer) => {
-                            return <dl key={`user--${volunteer.id}`}>
-                                <dt>User seeking assistance:</dt>                               
-                                <dd>{volunteer.first_name} {volunteer.last_name}</dd>
-                                <dd>{volunteer.address}</dd>
-                                {
-                                    volunteer.apt ? <dd>{volunteer.apt}</dd>
-                                    : ""
-                                }
-                                <dd>{volunteer.city}, TN &nbsp; {volunteer.zipcode}</dd>
-                                <dd>Phone: {volunteer.phone}</dd>
-                                <dd>Email: {volunteer.email}</dd>
-                                <dd> Volunteering to assist with:
-                                    {
-                                        filterOffers(volunteer.id).map(
-                                            (offer) => {
-                                                return <dl key={`user--${offer.id}`}>
-                                                    {
-                                                        offer.approverId > 0 ? <img src={approved} alt="approved" /> : ""
-                                                    }
-                                                    <dd>{`${findTask(offer.taskId)}`}</dd>
-                                                    {
-                                                        offer.approverId === 0
-                                                        ? <button
-                                                            className="button__approve"
-                                                            onClick={() => {
-                                                                approveOffer(offer.id)
-                                                            }}>Approve</button>
-                                                        : ""
-                                                    }
-                                                    
-                                                    <button className="button__delete" onClick={() => {
-                                                        deleteOffer(offer.id)
-                                                            .then(()=>{getAllOffersWithUsers()
-                                                                .then((offers) => {
-                                                                    setOffersWithUsers(offers)
-                                                                })
-                                                            })
-                                                    }}>Delete</button>
-                                                </dl>
+                <section className='staff--wrapper'>
+                    <div className='staff--requests'>
+                        <div className='staff--requests__title'>
+                            Community Care requests for help:
+                        </div>
+                        <div className='staff--requests__list'>
+                            {
+                                requestors.map(
+                                    (requestor) => {
+                                        return <dl key={`user--${requestor.id}`} className='staff--requests__list--item'>
+                                            <dd className="staff--requests__list--item__name">{requestor.first_name} {requestor.last_name}</dd>
+                                            <dd>{requestor.address}</dd>
+                                            {
+                                                requestor.apt ? <dd>{requestor.apt}</dd>
+                                                : ""
                                             }
-                                        )
-                                    } 
-                                </dd>
-                            </dl>
-                        }
-                    )
-                }
-            </div>
-
-
+                                            <dd>{requestor.city}, TN &nbsp; {requestor.zipcode}</dd>
+                                            <dd>Phone: {requestor.phone}</dd>
+                                            <dd>Email: {requestor.email}</dd>
+                                            <dd> Needs assistance with:
+                                                {
+                                                    filterRequests(requestor.id).map(
+                                                        (request) => {
+                                                            return <dl key={`user--${request.id}`}>
+                                                                <dd>
+                                                                    {
+                                                                        request.approverId > 0 ? <img src={approved} alt="approved" /> : ""
+                                                                    }
+                                                                    {` ${findTask(request.taskId)} `}
+                                                                    {
+                                                                        request.approverId === 0
+                                                                        ? <button
+                                                                            className="staff--button__approve"
+                                                                            onClick={() => {
+                                                                                approveRequest(request.id)
+                                                                            }}>Approve</button>
+                                                                        : ""
+                                                                    }
+                                                                    <button
+                                                                        className="staff--button__delete"
+                                                                        onClick={() => {
+                                                                            deleteRequest(request.id)
+                                                                            .then(()=>{getAllRequestsWithUsers()
+                                                                                .then((requests) => {
+                                                                                    setRequestsWithUsers(requests)
+                                                                                })
+                                                                            })
+                                                                        }}>Delete</button>
+                                                                </dd>
+                                                            </dl>
+                                                        }
+                                                    )
+                                                } 
+                                            </dd>
+                                        </dl>
+                                    }
+                                )
+                            }
+                        </div>
+                    </div>
+                        
+                    <div className="staff--volunteers">
+                        <div className='staff--volunteers__title'>
+                            Community Care volunteers:
+                        </div>
+                        <div className='staff--volunteers__list'>
+                            {
+                                volunteers.map(
+                                    (volunteer) => {
+                                        return <dl key={`user--${volunteer.id}`} className='staff--volunteers__list--item'>
+                                            <dd className='staff--volunteers__list--item__name'>{volunteer.first_name} {volunteer.last_name}</dd>
+                                            <dd>{volunteer.address}</dd>
+                                            {
+                                                volunteer.apt ? <dd>{volunteer.apt}</dd>                                                : ""
+                                            }
+                                            <dd>{volunteer.city}, TN &nbsp; {volunteer.zipcode}</dd>
+                                            <dd>Phone: {volunteer.phone}</dd>
+                                            <dd>Email: {volunteer.email}</dd>
+                                            <dd> Volunteering to assist with:
+                                                {
+                                                    filterOffers(volunteer.id).map(
+                                                        (offer) => {
+                                                            return <dl key={`user--${offer.id}`}>
+                                                                <dd>
+                                                                    {
+                                                                        offer.approverId > 0 ? <img src={approved} alt="approved" /> : ""
+                                                                    }
+                                                                    {`${findTask(offer.taskId)}`}
+                                                                    {
+                                                                        offer.approverId === 0
+                                                                        ? <button
+                                                                            className="staff--button__approve"
+                                                                            onClick={() => {
+                                                                                approveOffer(offer.id)
+                                                                            }}>Approve</button>
+                                                                        : ""
+                                                                    }
+                                                                    <button className="staff--button__delete" onClick={() => {
+                                                                        deleteOffer(offer.id)
+                                                                            .then(()=>{getAllOffersWithUsers()
+                                                                                .then((offers) => {
+                                                                                    setOffersWithUsers(offers)
+                                                                                })
+                                                                            })
+                                                                    }}>Delete</button>
+                                                                </dd>
+                                                            </dl>
+                                                        }
+                                                    )
+                                                } 
+                                            </dd>
+                                        </dl>
+                                    }
+                                )
+                            }
+                        </div>
+                    </div>
+                </section>
+            </article>
         </main>
     )
 }

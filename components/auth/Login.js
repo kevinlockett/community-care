@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { getExistingUserEmail } from '../../repositories/usersRepository'
 import { Link } from "react-router-dom"
 import hero from '../img/login.png'
+import './Login.css'
 
 function Login() {
 
@@ -31,6 +32,7 @@ function Login() {
     return (
         <>
             <main className='container--login'>
+                
                 <dialog className='dialog dialog--auth' ref={existDialog}>
                     <div>User does not exist</div>
                     <button className="btn btn--close" onClick={e => existDialog.current.close()}>Close</button>
@@ -39,25 +41,27 @@ function Login() {
                 <section>
                     <img src={hero} className="hero--login" alt="login" />
                     
-                    <form className='loginForm' onSubmit={handleLogin}>
+                    <form className='form--login' onSubmit={handleLogin}>
                         <h1 className='center title--login' >Welcome Back, Friend!</h1>
-                        <h3 className='center subtitle--login' >Please login</h3>
+                        <h2 className='center subtitle--login' >Please login</h2>
                         <fieldset>
-                            <label htmlFor="inputEmail"> Email address </label>
+                            <label htmlFor="inputEmail">Please enter your email address: &nbsp;</label>
                             <input type="email"
                                 onChange={e => setEmail(e.target.value)}
                                 className="form-control"
                                 placeholder="Email address"
                                 required autoFocus />
                         </fieldset>
-                        <fieldset>
-                            <button className="btn btn--sign-in" type="submit"><span>Sign in</span></button>
-                        </fieldset>
+
+                        <div className='buttton--login'>
+                            <button className="btn--login" type="submit"><span>Log in</span></button>
+                        </div>
+                        <div className="link--register">
+                            <h3>Haven't registered yet? <Link className='link--registerHere' to="/Register">Register here</Link></h3>
+                        </div>
                     </form>
                 </section>
-                <section className="link--register">
-                    <Link to="/Register">Not a member yet?</Link>
-                </section>
+
             </main>
         </>
     )

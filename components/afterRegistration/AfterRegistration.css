@@ -1,18 +1,60 @@
+.container--afterRegistration {
+    height: 80vh;
+}
+
 .hero--afterRegistration {
-    width: 100%;
-    display: block;
-    margin: 4em auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-image: url("../img/tools.png");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -10
 }
 
 .title--afterRegistration {
     color: var(--clr-accent-dk-green);
+    text-shadow: 3px 3px 8px var(--clr-neutral-100);
+    font-size: 3rem;
 }
 
-.afterRegistrationCards {
+.title--afterRegistration {
+    margin: 10rem 0 0;
+}
+
+.article--afterRegistration {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 4em;
+    margin: 2em 0;
 }
 
+.cards--afterRegistration {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 
+.card--afterRegistration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 20em;
+    background-color: hsla(187, 6%, 69%, .7);
+    padding: 1em;
+    margin: 1rem;
+}
+
+.card--afterRegistration p {
+    font-size: 110%;
+    font-weight: 500;
+}
+
+.card--afterRegistration img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}

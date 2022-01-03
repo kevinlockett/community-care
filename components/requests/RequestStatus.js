@@ -3,9 +3,9 @@ import { getThisUser, getAllUsers } from '../../repositories/usersRepository'
 import { getAllRequestsWithUsers, deleteRequest } from '../../repositories/requestsRepository'
 import { getAllTasks } from '../../repositories/tasksRepository'
 import { getAllAssignments } from '../../repositories/assignmentsRepository'
-import hero from '../img/volunteer-text.png'
+import hero from '../img/volunteerGraphic.png'
 import approved from '../img/approved-sm.png'
-import './requests.css'
+import './RequestStatus.css'
 
 function RequestStatus() {
 
@@ -107,7 +107,7 @@ function RequestStatus() {
             const foundHelp = assignments.filter(a => a.request.userId === thisUser.id)
             setAssignmentsForThisUser(foundHelp)
         },
-        [assignments]
+        [assignments, thisUser.id]
     )
 
     const findTask = (taskId) => {
@@ -118,136 +118,157 @@ function RequestStatus() {
 
     const findName = (id) => {
         const foundUser = allUsers.find(u => u.id === id)
-        const userName = `${foundUser.first_name}  ${foundUser.last_name}`
+        const userName = `${foundUser?.first_name}  ${foundUser?.last_name}`
         return userName 
     }
 
     return (
-        <main id="container--checkRequestStatus" className="container--checkRequestStatus">
-            <img src={hero} className="hero--checkRequestStatus" alt="hands reaching out toward each other" />
-            <section className='list--checkRequestStatus' id='list--checkRequestStatus'>
-                <h1 className='center title--checkRequestStatus' >
+
+        <main className="container--requestStatus">
+
+            <div className='requestStatus--header'>
+                <img src={hero} className="hero--requestStatus" alt="" />
+            </div>
+
+            <article className='requestStatus--article'>
+                <div className='center requestStatus--title' >
                     {
                         requestsByThisUser.length === 1 ? " We have revieved your request"
                         : requestsByThisUser.length > 1 ? " We have revieved your requests"
                         : ""
                     }
-                </h1>
-                <h3>{ requestCount }</h3>
-                <h3>
-                    {
-                        nonApprovedRequests.length === 1 ? "This request is under review:"
-                        : nonApprovedRequests.length > 1 ? "These requests are "
-                        : ""
-                    }
-                </h3>
-                <div className = 'list--nonApprovedRequests' >
-                    {
-                        nonApprovedRequests.map(
-                            (request) => {
-                                return <div key={`request--${request.id}`}>
-                                    <div>
-                                        {`${nonApprovedRequests.indexOf(request) + 1} `}
-                                        {`${findTask(request.taskId)} `}
-                                        <button className="button__delete" onClick={() => {
-                                            deleteRequest(request.id)
-                                                .then(()=>{getAllRequestsWithUsers()
-                                                    .then((requests) => {
-                                                        updateRequests(requests)
-                                                    })
-                                                })
-                                        }}>Delete</button>
-                                    </div>
-                                </div>
-                            }
-                        )
-                    }
-                    <p className='instruction--nonApprovedRequests'>
-                        {
-                            nonApprovedRequests.length === 1 ? "This request is "
-                            : nonApprovedRequests.length > 1 ? "These requests are "
-                            : ""
-                        }
-                        {
-                            nonApprovedRequests.length >= 1 ? "being reviewed by our staff.  A staff member may be contacting you soon for more information. You can check back here in a day or two to see if your request has been approved or to edit your request."
-                            : ""
-                        }
-                    </p>
                 </div>
-                <h3>
-                    {
-                        approvedRequests.length === 1 ? "This request has been approved:"
-                        : approvedRequests.length > 1 ? "These requests have been approved:"
-                        : ""
-                    }
-                </h3>
-                <div className = 'list--approvedRequests' >
-                    {
-                        approvedRequests.map(
-                            (request) => {
-                                return <div key={`request--${request.id}`}>
-                                    <div>
-                                        <img src={approved} className="approved--checkRequestStatus" alt="approved check mark" />
-                                        {` ${approvedRequests.indexOf(request) + 1} `}
-                                        {`${findTask(request.taskId)}`}
-                                    </div>
-                                </div>
+            
+                <section className='requestStatus--wrapper'>
+            
+                    <div className='requestStatus--count'>
+                        <div className='requestStatus--count__title'>
+                            { requestCount }
+                        </div>
+                    </div>
+                
+                    <div className='requestStatus--underReview'>
+                        <div className='requestStatus--underReview__title'>
+                            {
+                                nonApprovedRequests.length === 1 ? "This request is still under review:"
+                                : nonApprovedRequests.length > 1 ? "These requests are still under review:"
+                                : ""
                             }
-                        )
-                    }
-                    <p className='instruction--approvedRequests'>
-                        {
-                            approvedRequests.length === 1 ? "This request has been reviewed by our staff and is "
-                            : approvedRequests.length > 1 ? "These requests have been reviewed by our staff and are "
-                            : ""
-                        }
-                        {
-                            approvedRequests.length >= 1 ? "approved. A volunteer will be contacting you soon to schedule your a convenient time to assist you with your need."
-                            : ""
-                        }
-                    </p>
-                </div>
-                <div className = 'list--helpIsOnTheWay' >
-                <h3>
-                    {
-                        assignmentsForThisUser ? "Help is on the way!" : ""
-                    }
-                </h3>
-
-
-
-                {   
-                    assignmentsForThisUser ?
-                    assignments
-                        .filter(assignment => assignment.request.userId === thisUser.id)
-                        .map(
-                            (assignment) => {
-                                return <div key={`assignment--${assignment.id}`}>
-                                    <div>
-                                        {`${findName(assignment.offer.userId)} `} has volunteered to assist you with 
-                                        {` ${findTask(assignment.request.taskId)}.`}
-                                    </div>
-                                </div>
+                        </div>
+                        <div className = 'requestStatus--underReview__list'>
+                            {
+                                nonApprovedRequests.map(
+                                    (request) => {
+                                        return <div key={`request--${request.id}`} className="requestStatus--underReview__list--item">
+                                            <div>
+                                                {`${nonApprovedRequests.indexOf(request) + 1} `}
+                                                {`${findTask(request.taskId)} `}
+                                                <button className="btn--requestStatus" onClick={() => {
+                                                    deleteRequest(request.id)
+                                                        .then(()=>{getAllRequestsWithUsers()
+                                                            .then((requests) => {
+                                                                updateRequests(requests)
+                                                            })
+                                                        })
+                                                }}><span>Delete</span></button>
+                                            </div>
+                                        </div>
+                                    }
+                                )
                             }
-                        )
-                    : ""
-                }
-                <p className='instruction--nonApprovedRequests'>
-                    {
-                        assignmentsForThisUser.length === 1 ? "This volunteer "
-                        : assignmentsForThisUser.length > 1 ? "These volunteers "
-                        : ""
-                    }
-                    {
-                        approvedRequests.length >= 1 ? "will be contacting you shortly to schedule a time to assist you."
-                        : ""
-                    }
-                </p>
-            </div>
-            <div>
-                <p>Please let us know if you have a further need or we can help you in the future.</p>
-            </div>
-            </section>
+                        </div>
+                        <div className='requestStatus--underReview__comments'>
+                            {
+                                nonApprovedRequests.length === 1 ? "This request is "
+                                : nonApprovedRequests.length > 1 ? "These requests are "
+                                : ""
+                            }
+                            {
+                                nonApprovedRequests.length >= 1 ? "being reviewed by our staff.  A staff member may be contacting you soon for more information. You can check back here in a day or two to see if your request has been approved or to edit your request."
+                                : ""
+                            }
+                        </div>
+                    </div>
+            
+            
+                    <div className='requestStatus--approved'>
+                        <div className = 'requestStatus--approved__title'>
+                            {
+                                approvedRequests.length === 1 ? "This request has been approved:"
+                                : approvedRequests.length > 1 ? "These requests have been approved:"
+                                : ""
+                            }
+                        </div>
+                        <div className = 'requestStatus--approved__list'>
+                            {
+                                approvedRequests.map(
+                                    (request) => {
+                                        return <div key={`request--${request.id}`} className="requestStatus--approved__list--item">
+                                            <div>
+                                                <img src={approved} className="approved--checkRequestStatus" alt="approved check mark" />
+                                                {` ${approvedRequests.indexOf(request) + 1} `}
+                                                {`${findTask(request.taskId)}`}
+                                            </div>
+                                        </div>
+                                    }
+                                )
+                            }
+                        </div>
+                        <div className='requestStatus--approved__comments'>
+                            {
+                                approvedRequests.length === 1 ? "This request has been reviewed by our staff and is "
+                                : approvedRequests.length > 1 ? "These requests have been reviewed by our staff and are "
+                                : ""
+                            }
+                            {
+                                approvedRequests.length >= 1 ? "approved. A volunteer will be contacting you soon to schedule your a convenient time to assist you with your need."
+                                : ""
+                            }
+                        </div>
+                    </div>
+
+                    <div className='requestStatus--assigned'>
+                        <div className='requestStatus--assigned__title' >
+                            {
+                                assignmentsForThisUser ? "Help is on the way!" : ""
+                            }
+                        </div>
+                        <div className='requestStatus--assigned__list' >
+                            {   
+                                assignmentsForThisUser ?
+                                assignments
+                                    .filter(assignment => assignment.request.userId === thisUser.id)
+                                    .map(
+                                        (assignment) => {
+                                            return <div key={`assignment--${assignment.id}`} className="requestStatus--assigned__list--item">
+                                                <div>
+                                                    {`${findName(assignment.offer.userId)} `} has  volunteered to assist you with 
+                                                    {` ${findTask(assignment.request.taskId)}.`}
+                                                </div>
+                                            </div>
+                                        }
+                                    )
+                                : ""
+                            }
+                        </div>
+                        <div className='requestStatus--assigned__comments'>
+                            {
+                                assignmentsForThisUser.length === 1 ? "This volunteer "
+                                : assignmentsForThisUser.length > 1 ? "These volunteers "
+                                : ""
+                            }
+                            {
+                                approvedRequests.length >= 1 ? "will be contacting you shortly to schedule a time to assist you."
+                                : ""
+                            }
+                        </div>
+                    </div>
+                
+                    <div className='center requestStatus--footer'>
+                        Please let us know if you have a further need <br/> or if we can help you in the future.
+                    </div>
+                </section>
+            </article>
         </main>
     )
 
