@@ -49,7 +49,7 @@ function CompletionReport() {
             const foundName = users.find(u => u.id === parseInt(thisAssignmentExpanded.request.userId))
             setRequestor(foundName)
         },
-        [thisAssignmentExpanded]
+        [thisAssignmentExpanded, users]
     )
 
     useEffect(

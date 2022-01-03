@@ -1,0 +1,197 @@
+:root {
+        --box-shadow-btn__volunteerForm:
+            0 1rem 1.25rem 0 #ebd366
+            0 -0.25rem 1.5rem #423e4b inset,
+            0 0.75rem 0.5rem #a3a4a8 inset,
+            0 0.25rem 0.5rem 0 #524f5c inset;
+}
+
+.container--volunteerForm {
+    margin: 8.5rem 0 5rem;
+}
+
+.container--volunteerForm fieldset { 
+    border: 0;
+}
+
+.hero--volunteerForm {
+    max-width: 65rem;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.form--volunteerForm__container {
+    width: 65rem;
+    display: block;
+    margin: 0 auto;
+}
+
+.form--volunteerForm__legend {
+	display: block;
+	padding: 1rem 0 .75rem 0;
+	font-size: 2rem;
+	font-weight: 600;
+}
+
+.title--volunteerForm {
+    margin: 0;
+    padding: 1.25rem 2rem 1rem;
+    color: var(--clr-neutral-100);
+    background-color: #455056;
+    background-image: linear-gradient(0deg, #3f3851, #60604b);
+    font-size: 2rem;
+    font-weight: 500;
+    text-shadow: 3px 3px 8px #6e6f51;
+}
+
+.form--volunteerForm__wrapper {
+    padding: 0 20px 15px;
+    border-radius: 0 0 6px 6px;
+    background-color: var(--clr-neutral-100);
+    background-image: linear-gradient(0deg, #acadb1, var(--clr-neutral-100));
+    box-shadow: 0 5px 20px #35474b;
+}
+
+.form--volunteerForm__wrapper p {
+	margin: 0;
+	padding: 1.2rem 0 0;
+	font-size: 100%;
+}
+
+.form--volunteerForm__text p {
+    margin: 0 0 1rem 0;
+    padding-top: 0;
+}
+
+.form--volunteerForm__userProfile {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: .5rem auto;
+}
+
+.userProfile--details {
+    display: flex;
+}
+
+.fieldTitle {
+    display: flex;
+    align-content: center;
+    justify-content: flex-end;
+    width: 20%;
+    padding-right: .75rem;
+    color: #3f3851;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.fieldDetails {
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+    width: 80%;
+    color: #3f3851;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.form--volunteerForm__instructions {
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-align: center;
+    border-bottom: 3px solid #3f3851;
+    padding-bottom: 1rem;
+}
+
+.form--volunteerForm fieldset {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.form--volunteerForm fieldset p {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.form--volunteerForm fieldset ul {
+    font-size: 1.5rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.button--volunteerForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1rem auto;
+}
+
+.btn--volunteerForm {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+
+    cursor: pointer;
+	position: relative;
+	padding: 1.2rem 4.5rem;
+	border-radius: 3.75rem;
+	line-height: 1.5rem;
+	font-size: 1.5rem;
+
+    padding: .735rem 2.2rem;
+	font-size: 1.2rem;
+
+	font-weight: 500;
+
+    border: 1px solid var(--clr-neutral-800);
+    background-image: linear-gradient(-180deg, #615f4e 0%, #3f3851 100%);
+    box-shadow: var(--box-shadow-btn__volunteerForm);
+}
+
+.btn--volunteerForm span {
+    color: transparent;
+    background-image: linear-gradient(0deg, #e8cf92 0%, var(--clr-neutral-100) 100%);
+    -webkit-background-clip: text;
+	background-clip: text;
+	filter: drop-shadow(0 2px 2px #40374c);
+}
+
+.btn--volunteerForm::before {
+    content: '';
+    display: block;
+    height: 0.16rem;
+    position: absolute;
+    top: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 5.8rem);
+    background: var(--clr-neutral-100);
+    border-radius: 100%;
+    opacity: 0.7;
+    background-image: linear-gradient(-270deg, rgba(255,255,255,0.00) 0%, #fff 20%, #fff 80%, rgba(255,255,255,0.00) 100%);
+}
+
+.btn--volunteerForm::after {
+    content: "";
+	display: block;
+	height: 0.136rem;
+	position: absolute;
+	bottom: 0.50rem;
+	left: 50%;
+	transform: translateX(-50%);
+	width: calc(100% - 5.8rem);
+	background: var(--clr-neutral-100);
+	border-radius: 100%;
+}
+
+
+
+
+
+

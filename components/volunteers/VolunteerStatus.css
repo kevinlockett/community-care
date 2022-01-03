@@ -1,0 +1,141 @@
+:root {
+    --box-shadow-btn__volunteerStatus:
+        0 1rem 1.25rem 0 #0f9ebb
+        0 -0.25rem 1.5rem var(--clr-neutral-800) inset,
+        0 0.75rem 0.5rem hsl(206, 92%, 91%) inset,
+        0 0.25rem 0.5rem 0 #01658e inset;
+}
+
+.container--volunteerStatus {
+    margin: 8.5rem 0 5rem;
+    
+}
+
+.hero--volunteerStatus {
+    max-width: 90rem;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 4px solid #01a8e0;
+}
+
+.volunteerStatus--article {
+    width: 90rem;
+    display: block;
+    margin: 0 auto;
+}
+
+.volunteerStatus--title {
+    margin: 0;
+    padding: 1.25rem 2rem 1rem;
+    color: var(--clr-neutral-100);
+    background-color: #01a8e0;
+    background-image: linear-gradient(0deg, #0b87b1, #93cadd);
+    font-size: 2rem;
+    font-weight: 500;
+    text-shadow: 3px 3px 8px #383740;
+}
+
+.volunteerStatus--wrapper {
+    padding: 0 20px 15px;
+    border-radius: 0 0 6px 6px;
+    background-color: var(--clr-neutral-100);
+    background-image: linear-gradient(0deg, #bfdde7, var(--clr-neutral-100));
+    box-shadow: 0 5px 20px #35474b;
+}
+
+.volunteerStatus--approved,
+.volunteerStatus--matched,
+.volunteerStatus--assigned,
+.volunteerStatus--underReview,
+.volunteerStatus--footer {
+    margin-bottom: 2rem;
+
+}
+
+.volunteerStatus--approved__title,
+.volunteerStatus--matched__title,
+.volunteerStatus--assigned__title,
+.volunteerStatus--underReview__title,
+.volunteerStatus--footer {
+    display: block;
+	padding: 1rem 0 .75rem 0;
+	font-size: 1.75rem;
+	font-weight: 600;
+}
+
+.volunteerStatus--approved__list,
+.volunteerStatus--matched__list,
+.volunteerStatus--assigned__list,
+.volunteerStatus--underReview__list {
+    margin: 1rem 2rem;
+}
+
+.volunteerStatus--approved__list--item,
+.volunteerStatus--matched__list--item,
+.volunteerStatus--assigned__list--item,
+.volunteerStatus--underReview__list--item {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    margin: 1rem 0;
+}
+
+.volunteerStatus--approved__list img,
+.volunteerStatus--matched__list img,
+.volunteerStatus--assigned__list img,
+.volunteerStatus--underReview__list img {
+    width: 30px;
+    margin-right: 1rem;
+}
+
+.volunteerStatus--approved__list button,
+.volunteerStatus--matched__list button,
+.volunteerStatus--assigned__list button,
+.volunteerStatus--underReview__list button {
+    margin-left: 2rem;
+}
+
+.volunteerStatus--approved__comments,
+.volunteerStatus--matched__comments,
+.volunteerStatus--assigned__comments,
+.volunteerStatus--underReview__comments {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.button--volunteerStatus {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn--volunteerStatus {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    cursor: pointer;
+	position: relative;
+	padding: 2rem 1.875rem;
+	border-radius: 3.75rem;
+	line-height: .625rem;
+	font-size: .4rem;
+
+    padding: .25rem .92rem;
+	font-size: 1rem;
+
+	font-weight: 500;
+
+    border: 1px solid var(--clr-neutral-800);
+    background-image: linear-gradient(-180deg, #38b6d4 0%, #01658e 100%);
+    box-shadow: var(--box-shadow-btn__volunteerStatus);
+}
+
+.btn--volunteerStatus span {
+    color: transparent;
+    background-image: linear-gradient(0deg, #fcf9eb 0%, var(--clr-neutral-100) 100%);
+    -webkit-background-clip: text;
+	background-clip: text;
+	filter: drop-shadow(0 2px 2px var(--clr-neutral-800));
+}

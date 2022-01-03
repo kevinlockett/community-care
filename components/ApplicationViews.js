@@ -13,49 +13,52 @@ import StaffReviewList from './staff/StaffReviewList'
 import EditProfile from './editProfile/EditProfile'
 import CompletionReport from './completions/CompletionForm'
 import ServiceStories from './serviceStories/ServiceStories'
+import "./ApplicationViews.css"
 
 export const ApplicationViews = () => {
     return (
         <>
-            <Route exact path="/">
-                <Home />
-            </Route>
-            <Route exact path="/Register">
-                <Register />
-            </Route>
-            <Route exact path="/Login">
-                <Login />
-            </Route>
-            <Route exact path="/AfterRegistration">
-                <AfterRegistration />
-            </Route>
-            <Route exact path="/GetHelp">
-                <RequestForm />
-            </Route>
-            <Route exact path="/CheckRequestStatus">
-                <RequestStatus />
-            </Route>
-            <Route exact path="/Volunteer">
-                <VolunteerForm />
-            </Route>
-            <Route exact path="/VolunteerStatus">
-                <VolunteerStatus />
-            </Route>
-            <Route exact path="/RequestDetails/:requestId(\d+)">
-                <RequestDetails />
-            </Route>
-            <Route exact path="/LoginStaff">
-                <StaffReviewList />
-            </Route>
-            <Route exact path="/EditProfile">
-                <EditProfile />
-            </Route>
-            <Route exact path="/CompletionReport">
-                <CompletionReport />
-            </Route>
-            <Route exact path="/ServiceStories">
-                <ServiceStories />
-            </Route>
+            <article id="container--ApplicationViews">
+                <Route exact path="/">
+                    <Home />
+                </Route>
+                <Route exact path="/Register">
+                    <Register />
+                </Route>
+                <Route exact path="/Login">
+                    <Login />
+                </Route>
+                <Route exact path="/AfterRegistration">
+                    <AfterRegistration />
+                </Route>
+                <Route exact path="/GetHelp">
+                    <RequestForm />
+                </Route>
+                <Route exact path="/CheckRequestStatus">
+                    <RequestStatus />
+                </Route>
+                <Route exact path="/Volunteer">
+                    <VolunteerForm />
+                </Route>
+                <Route exact path="/VolunteerStatus">
+                    <VolunteerStatus />
+                </Route>
+                <Route exact path="/RequestDetails/:requestId(\d+)">
+                    <RequestDetails />
+                </Route>
+                <Route exact path="/LoginStaff">
+                    <StaffReviewList />
+                </Route>
+                <Route exact path="/EditProfile">
+                    <EditProfile />
+                </Route>
+                <Route exact path="/CompletionReport">
+                    <CompletionReport />
+                </Route>
+                <Route exact path="/ServiceStories">
+                    <ServiceStories />
+                </Route>
+            </article>
         </>
     )
 }

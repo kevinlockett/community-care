@@ -1,0 +1,86 @@
+.container--serviceStories {
+    margin: 8.5rem 0 5rem;
+}
+
+.hero--serviceStories {
+    max-width: 65rem;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 5px solid #f83132;
+}
+
+.serviceStories--article {
+    width: 65rem;
+    display: block;
+    margin: 0 auto;
+}
+
+.serviceStories--title {
+    margin: 0;
+    padding: 1.25rem 2rem 1.5rem;
+    color: var(--clr-neutral-100);
+    background-color: #ad1e1f;
+    background-image: linear-gradient(0deg, #ad1e1f, #f83132);
+    font-size: 3rem;
+    font-weight: 500;
+    text-shadow: 3px 3px 8px #000;
+}
+
+.serviceStories--wrapper {
+    padding: 0 20px 15px;
+    border-radius: 0 0 6px 6px;
+    background-color: var(--clr-neutral-100);
+    background-image: linear-gradient(0deg, #d9e4f2, #fbfafc);
+    box-shadow: 0 5px 20px #ad1e1f;
+    border: 3px solid #ad1e1f;
+}
+
+.serviceStories--list {
+    margin: 1rem 2rem;
+}
+
+.serviceStories--list__title {
+    padding: 2rem 0 1rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.serviceStories--list__item {
+    align-items: center;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
+.serviceStories--requests__list dl,
+.serviceStories--volunteers__list dl {
+    font-size: 1.5rem;
+}
+
+.serviceStories--requests__list dd,
+.serviceStories--volunteers__list dd {
+    font-size: 1.5rem;
+}
+
+.serviceStories--requests__list--item__name,
+.serviceStories--volunteers__list--item__name {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.serviceStories--requests__list img,
+.serviceStories--volunteers__list img {
+    width: 30px;
+    margin-right: 1rem;
+}
+
+.serviceStories--requests__list button,
+.serviceStories--volunteers__list button {
+    margin-left: 2rem;
+}
+
+.serviceStories--requests__comments,
+.serviceStories--volunteers__comments {
+    font-size: 1.5rem;
+    font-weight: 500;
+}

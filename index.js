@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-import { CommunityCare } from './components/communityCare/CommunityCare'
+import CommunityCare from './components/communityCare/CommunityCare'
 import 'normalize.css'
 import './index.css'
 import './components/fonts.css'

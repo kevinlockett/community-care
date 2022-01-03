@@ -4,9 +4,9 @@ import { getAllTasks } from '../../repositories/tasksRepository'
 import { getAllOffersWithUsers, deleteOffer } from '../../repositories/volunteersRepository'
 import { getAllRequestsWithUsers } from '../../repositories/requestsRepository'
 import { getAllAssignments, addAssignment, cancelAssignment } from '../../repositories/assignmentsRepository'
-import hero from '../img/volunteer-text.png'
+import hero from '../img/volunteerSign.png'
 import approved from '../img/approved-sm.png'
-import './volunteers.css'
+import './VolunteerStatus.css'
 
 function VolunteerStatus() {
 
@@ -98,7 +98,7 @@ function VolunteerStatus() {
     useEffect(
         () => {
             const filteredAssignments = allAssignments
-                .filter(assignment => assignment.offer.userId === parseInt(localStorage.getItem('communityCare_user')))
+                .filter(assignment => assignment.offer?.userId === parseInt(localStorage.getItem('communityCare_user')))
                 .filter(assignment => assignment.completed === false)
                 setAcceptedAssignments(filteredAssignments)
         },
@@ -123,7 +123,7 @@ function VolunteerStatus() {
     useEffect(
         () => {
             matches.length === 1 ? setMatchesMessage("You may be able to help with this request:")
-            : matches.length > 1 ? setMatchesMessage("You may be able to help with these requests")
+            : matches.length > 1 ? setMatchesMessage("You may be able to help with these requests:")
             : setMatchesMessage("")
         },
         [matches]
@@ -132,7 +132,7 @@ function VolunteerStatus() {
     useEffect(
         () => {
             allAssignments.length === 1 ? setAssignmentsMessage("You have accepted this assignment:")
-            : allAssignments.length > 1 ? setAssignmentsMessage("You have accepted these assignments")
+            : allAssignments.length > 1 ? setAssignmentsMessage("You have accepted these assignments:")
             : setAssignmentsMessage("")
         },
         [allAssignments]
@@ -170,177 +170,178 @@ function VolunteerStatus() {
     }
 
     return (
-        <main id="container--VolunteerStatus" className="container--VolunteerStatus">
-            <img src={hero} className="hero--VolunteerStatus" alt="hands reaching out toward each other" />
-            <section className='list--VolunteerStatus' id='list--VolunteerStatus'>
+
+        <main className='container--volunteerStatus'>
+
+            <div className='volunteerStatus--header'>
+                <img src={hero} className="hero--volunteerStatus" alt="" />
+            </div>
+
+            <article className='volunteerStatus--article'>
+                <h1 className='center volunteerStatus--title' >Thank you for volunteering!</h1>
+
+                <section className='volunteerStatus--wrapper' >
                 
-                <h1 className='center title--VolunteerStatus' >Thank you for volunteering!</h1>
-            </section>
-            
-            
-            <section>
-                <h3>
-                    {approvedMessage}
-                </h3>
-                <div className = 'list--ApprovedOffers' >
-                    {
-                        approvedOffersByThisUser
-                            .map(
-                                (offer) => {
-                                    return <div key={`offer--${offer.id}`}>
-                                        
-                                        <img src={approved} alt="approved" />
-                                        {` ${approvedOffersByThisUser.indexOf(offer) + 1} `}
-                                        {`${findTask(offer.taskId)} `}
-                                        <button
-                                            className="button__delete"
-                                            onClick={() => {
-                                                deleteOffer(offer.id)
-                                                .then(
-                                                    ()=>{
-                                                        getAllOffersWithUsers()
-                                                        .then((requests) => {
-                                                            updateOffers(requests)
+                    <div className='volunteerStatus--approved'>
+                        <div className='volunteerStatus--approved__title'>
+                            {approvedMessage}
+                        </div>
+                        <div className='volunteerStatus--approved__list' >
+                            {
+                                approvedOffersByThisUser
+                                    .map(
+                                        (offer) => {
+                                            return <div key={`offer--${offer.id}`} className='volunteerStatus--approved__list--item' >
+                                                <img src={approved} alt="approved" />
+                                                {` ${approvedOffersByThisUser.indexOf(offer) + 1} `}
+                                                {`${findTask(offer.taskId)} `}
+                                                <button
+                                                    className="btn--volunteerStatus"
+                                                    onClick={() => {
+                                                    deleteOffer(offer.id)
+                                                    .then(
+                                                        ()=>{
+                                                            getAllOffersWithUsers()
+                                                            .then((requests) => {
+                                                                updateOffers(requests)
+                                                            })
                                                         })
-                                                    })
-                                            }}><span>Delete</span></button>
-                                </div>
-                            }
-                        )
-                    }
-                </div>
-            </section>
-
-
-            <section className='list--matchedOffersList' >
-                <h3>
-                    {matchesMessage}
-                </h3>
-                <p className='instruction--ApprovedOffers'>
-                    {
-                        matches.length >= 1 ? 'Please click on a name for more details and contact information. Click "Accept" to accept an assignment.'
-                        : ""
-                    }
-                </p>
-
-                <div>
-
-                    {
-                        matches.map(
-                            (match) => {
-                                return <div key={`request--${match.id}`}>
-                                    <Link to={`/RequestDetails/${match.id}`} >
-                                        {` ${findName(match.userId)} `}
-                                    </Link>
-                                    is looking for assistance with
-                                    {`${findTask(match.taskId)}. `}
-                                    <button
-                                        className="button__accept"
-                                        onClick={
-                                            (e) => {
-                                                const newAssignment = {}
-                                                newAssignment.requestId = match.id
-                                                newAssignment.taskId = match.taskId
-                                                newAssignment.completed = false
-                                                newAssignment.lengthInHours = 0
-                                                acceptAssignment(newAssignment)
-                                                
-                                            }   
+                                                }}><span>Delete</span></button>
+                                            </div>
                                         }
-                                    >Accept</button>
-                                </div>
+                                    )
                             }
-                        )
-                    }
+                        </div>
+                    </div>
 
-                </div>
+                    <div className='volunteerStatus--matched' >
+                        <div className='volunteerStatus--matched__title' >
+                            {matchesMessage}
+                        </div>
+                        <div className='volunteerStatus--matched__comments' >
+                            {
+                                matches.length >= 1 ? 'Please click on a name for more details and contact information. Click "Accept" to accept an assignment.'
+                                : ""
+                            }
+                        </div>
+                        <div className='volunteerStatus--matched__list' >
+                            {
+                                matches.map(
+                                    (match) => {
+                                        return <div key={`request--${match.id}`} className='volunteerStatus--matched__list--item'>
+                                            <Link to={`/RequestDetails/${match.id}`} >
+                                                {` ${findName(match.userId)} `}
+                                            </Link>
+                                            &nbsp; is looking for assistance with
+                                            {`${findTask(match.taskId)}. `}
+                                            <button
+                                                className="btn--volunteerStatus"
+                                                onClick={
+                                                    (e) => {
+                                                        const newAssignment = {}
+                                                        newAssignment.requestId = match.id
+                                                        newAssignment.taskId = match.taskId
+                                                        newAssignment.completed = false
+                                                        newAssignment.lengthInHours = 0
+                                                        acceptAssignment(newAssignment)
+                                                    }   
+                                                }
+                                            ><span>Accept</span></button>
+                                        </div>
+                                    }
+                                )
+                            }
+                        </div>
+                    </div>
 
-            </section>
 
-            <section className='list--acceptedAssignmentsList' >
-                <h3>
-                    {assignmentsMessage}
-                </h3>
-                <p className='instruction--AcceptedAssignments'>
-                    {
-                        acceptedAssignments.length >= 1 ? 'Please contact the requestor and schedule a work appointment as soon as possible. If you are unable to complete the assignment, please click "Cancel."'
-                        : ""
-                    }
-                </p>
+                    <div className='volunteerStatus--assigned'>
+                        <div className='volunteerStatus--assigned__title'>
+                            {assignmentsMessage}
+                        </div>
+                        <div className='volunteerStatus--assigned__comments'>
+                            {
+                                acceptedAssignments.length >= 1 ? 'Please contact the requestor and schedule a work appointment as soon as possible. If you are unable to complete the assignment, please click "Cancel."'
+                                : ""
+                            }
+                        </div>
+                        <div className='volunteerStatus--assigned__list'>
+                            {
+                                acceptedAssignments.map(
+                                    (assignment) => {
+                                        return <div key={`assignment--${assignment.requestId}`} className="volunteerStatus--assigned__list--item">
+                                            You have aggreed to assist &nbsp;
+                                            <Link to={`/RequestDetails/${assignment.requestId}`}>
+                                                {`${findName(assignment.request?.userId)}`}
+                                            </Link>
+                                            &nbsp; with {`${findTask(assignment?.taskId)} `} by {`${assignment.request?.dateNeeded}`}.&nbsp;
+                                            <button className="btn--volunteerStatus"
+                                                onClick={() => {
+                                                    if (assignment.hasOwnProperty('id')) {
+                                                        localStorage.setItem('completedAssignment', assignment.id)
+                                                        history.push('/CompletionReport')
+                                                    }
+                                                }}><span>Complete</span>
+                                            </button>
+                                            <button className="btn--volunteerStatus"
+                                                onClick={() => {
+                                                    cancelAssignment(assignment.id)
+                                                        .then(()=>{getAllAssignments()
+                                                            .then((allAssignments) => {
+                                                                updateAllAssignments(allAssignments)
+                                                            })
+                                                        })
+                                                    }}><span>Cancel</span></button>
+                                        </div>
+                                    }
+                                )
+                            }
+                        </div>
+                    </div>
 
-                <div>
-
-                    {
-                        acceptedAssignments.map(
-                            (assignment) => {
-                                return <div key={`assignment--${assignment.requestId}`}>
-                                    You have aggreed to assist &nbsp;
-                                    <Link to={`/RequestDetails/${assignment.requestId}`}>
-                                        {`${findName(assignment.request?.userId)}`}
-                                    </Link>
-                                    &nbsp; with {`${findTask(assignment?.taskId)} `} by {`${assignment.request?.dateNeeded}`}.&nbsp;
-                                    <button className="button__complete" onClick={() => {
-                                        if (assignment.hasOwnProperty('id')) {
-                                            localStorage.setItem('completedAssignment', assignment.id)
-                                            history.push('/CompletionReport')
+                    <div className='volunteerStatus--underReview'>
+                        <div className='volunteerStatus--underReview__title'>
+                            {nonApprovedMessage}
+                        </div>
+                        <div className='volunteerStatus--underReview__list'>
+                            {
+                                offers
+                                    .filter(offer => offer.userId === parseInt(localStorage.getItem('communityCare_user')))
+                                    .filter(offer => offer.approverId === 0)
+                                    .map(
+                                        (offer) => {
+                                            return <div key={`offer--${offer.id}`} className="volunteerStatus--underReview__list--item">
+                                                {` ${nonApprovedOffersByThisUser.indexOf(offer) + 1} `}
+                                                {`${findTask(offer.taskId)} `}
+                                                <button className="btn--volunteerStatus"
+                                                    onClick={() => {
+                                                        deleteOffer(offer.id)
+                                                        .then(()=>{getAllOffersWithUsers()
+                                                            .then((requests) => {
+                                                                updateOffers(requests)
+                                                            })
+                                                        })
+                                                    }
+                                                }><span>Delete</span></button>
+                                            </div>
                                         }
-                                    }}>Complete</button>
-                                    <button className="button__cancel" onClick={() => {
-                                        cancelAssignment(assignment.id)
-                                            .then(()=>{getAllAssignments()
-                                                .then((allAssignments) => {
-                                                    updateAllAssignments(allAssignments)
-                                                })
-                                            })
-                                        }}>Cancel</button>
-                                </div>
+                                    )
                             }
-                        )
-                    }
-                    
-
-                </div>
-
-            </section>
-
-            <section className='list--NonApprovedOffers' >
-                <h3>
-                    {nonApprovedMessage}
-                </h3>
-
-                {
-                    offers
-                        .filter(offer => offer.userId === parseInt(localStorage.getItem('communityCare_user')))
-                        .filter(offer => offer.approverId === 0)
-                        .map(
-                            (offer) => {
-                                return <div key={`offer--${offer.id}`}>
-                                    {` ${nonApprovedOffersByThisUser.indexOf(offer) + 1} `}
-                                    {`${findTask(offer.taskId)} `}
-                                    <button className="button__delete" onClick={() => {
-                                        deleteOffer(offer.id)
-                                            .then(()=>{getAllOffersWithUsers()
-                                                .then((requests) => {
-                                                    updateOffers(requests)
-                                                })
-                                            })
-                                        }
-                                    }>Delete</button>
-                                </div>
+                        </div>
+                        <div className='volunteerStatus--underReview__comments'>
+                            {
+                                nonApprovedOffersByThisUser.length >= 1 ? "We may need to review your training, safety, or certification records before you can be approved for these areas. A staff member will be reaching out to you soon."
+                                : ""
                             }
-                        )
-                }
-                <p className='instruction--nonApprovedOffersByThisUser'>
-                    {
-                        nonApprovedOffersByThisUser.length >= 1 ? "We may need to review your training, safety, or certification records before you can be approved for these areas. A staff member will be reaching out to you soon."
-                        : ""
-                    }
-                </p>
-                <div>
-                    Thanks again for volunteering to serve with us! Please reach out if you have any questions.
-                </div>
-            </section>
+                        </div>
+                    </div>
 
+                    <div className='volunteerStatus--footer center'>
+                        Thank you again for volunteering to serve with us! <br/> Please reach out if you have any questions.
+                    </div>
+
+                </section>
+            </article>
         </main>
     )
 

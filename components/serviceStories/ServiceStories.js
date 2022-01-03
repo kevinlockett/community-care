@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { getAllRequests } from '../../repositories/requestsRepository'
 import { getAllAssignments } from '../../repositories/assignmentsRepository'
 import { getAllOffers } from '../../repositories/volunteersRepository'
-
-import hero from '../img/networking.png'
+import hero from '../img/successStories.png'
+import './ServiceStories.css'
 
 function ServiceStories() {
 
@@ -84,32 +84,46 @@ function ServiceStories() {
         [allAssignments]
     )
 
-
-
-
-
-
-
-
-
-
-
-
     return (
-        <main id="serviceStories" className="serviceStories">
-            <img src={hero} className="hero--serviceStories" alt="hands reaching out toward each other" />
-            <section className='list--serviceStories' id='list--serviceStories'>
-                <h1 className='center title--serviceStories' >By the numbers ...</h1>
-            </section>
-            <section className='list--serviceStories__total' id='list--serviceStories__total'>
-                <h2 className='center'>Statistics Since Program Inception:</h2>
-                <h3 className='center'>{allRequests.length} requests for assistance have been received</h3>
-                <h3 className='center'>{uniqueRequestors.length} neighbors have asked for help.</h3>
-                <h3 className='center'>{uniqueVolunteers.length} volunteers have stepped up to help.</h3>
-                <h3 className='center'>{allAssignments.length} projects have been undertaken.</h3>
-                <h3 className='center'>{completions.length} projects have been completed.</h3>
-                <h3 className='center'>{hoursDonated} hours of service have been donated.</h3>
-            </section>
+
+        <main className="container--serviceStories">
+            <div className='serviceStories--header'>
+                <img src={hero} className="hero--serviceStories" alt="" />
+            </div>
+
+            <article className='serviceStories--article'>
+
+                <div className='center serviceStories--title'>
+                    By the numbers ...            
+                </div>
+
+                <section className='serviceStories--wrapper'>
+
+                    <div className='serviceStories--list'>
+
+                        <div className='center serviceStories--list__title'>Statistics Since Community Care Inception:</div>
+                        
+                        <div className='center serviceStories--list__item'>
+                            {allRequests.length} requests for assistance have been received
+                        </div>
+                        <div className='center serviceStories--list__item'>
+                            {uniqueRequestors.length} neighbors have asked for help.
+                        </div>
+                        <div className='center serviceStories--list__item'>
+                            {uniqueVolunteers.length} volunteers have stepped up to help.
+                        </div>
+                        <div className='center serviceStories--list__item'>
+                            {allAssignments.length} projects have been undertaken.
+                        </div>
+                        <div className='center serviceStories--list__item'>
+                            {completions.length} projects have been completed.
+                        </div>
+                        <div className='center serviceStories--list__item'>
+                            {hoursDonated} hours of service have been donated.
+                        </div>
+                    </div>
+                </section>
+            </article>
         </main>
     )
 }

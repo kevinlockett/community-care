@@ -4,9 +4,8 @@ import { getThisUser, updateUser } from '../../repositories/usersRepository'
 import { getAllTasks } from '../../repositories/tasksRepository'
 import { getAllOffers } from '../../repositories/volunteersRepository'
 import { postVolunteerSelections } from '../../repositories/volunteersRepository'
-
 import hero from '../img/volunteer-text.png'
-import './volunteers.css'
+import './VolunteerForm.css'
 
 function VolunteerForm() {
 
@@ -29,8 +28,6 @@ function VolunteerForm() {
     })
 
     const history = useHistory()
-
-    
 
     useEffect(
         () => {
@@ -57,7 +54,7 @@ function VolunteerForm() {
             const filteredOffers = allOffers.filter(offer => offer.userId === parseInt(thisUser.id))
             setOffersThisUser(filteredOffers)
         },
-        [allOffers]
+        [allOffers, thisUser.id]
     )
             
     useEffect(
@@ -131,71 +128,114 @@ function VolunteerForm() {
     }
     
     return (
-        <main id="container--volunteer" className="container--volunteer">
-            <img src={hero} className="hero--volunteer" alt="" />
-            <section className='form--volunteer' id='form--volunteer'>
-                
-            
-                <h1 className='center title--volunteer' >Thanks for volunteering to help!</h1>
-                <section className='intro--volunteer'>
-                    <p>
-                        {thisUser?.first_name}, we are so glad you are considering joining our Community Care team of volunteers.  We believe helping others is one way we can practice the way of Jesus. Whether you're a skilled craftsman or technician, or can simply push a broom or lawnmower, we are thrilled you're considering serving with us. Check your profile information below, then fill out the volunteer form to get started.
-                    </p>
-                </section>
-                <section className='userProfile--volunteer' >
-                    <div>
-                        Name: {thisUser.first_name} {thisUser.last_name}
-                    </div>
-                    <div>
-                        Address: {thisUser.address} {thisUser.apt}, {thisUser.city}, TN  {thisUser.zipcode}
-                    </div>
-                    <div>
-                        Phone: {thisUser.phone}
-                    </div>
-                    <div>
-                        Email: {thisUser.email}
-                    </div>
-                    <div>
-                        <p>If any of this information is not correct, please click the button below to edit your profile.</p>
-                        <button className='btn btn--edit-profile'
-                        onClick={() => {
-                            handleEditProfileClick()
-                        }}><span>Edit Profile</span></button>
-                    </div>
-                </section>
-                <section className='volunteer__type'>
-                    <h2>What kind of help can you provide?</h2>
-                    <form id="form--requestHelp" className="form--requestHelp">
-                        <div className="requestHelp__instructions">
-                            <fieldset>
-                                Select all types you are willing and able to perform.
-                                    <ul className="types-list">
-                                        {
-                                            remainingTasks.map(({task, id}) => {
-                                                return (
-                                                    <li key={`task--${id}`}>
-                                                        <input
-                                                            type="checkbox"
-                                                                id={`task--${id}`}
-                                                                name={task}
-                                                                value={id}
-                                                                checked={checkedState[task]}
-                                                                onChange={() => handleOnChange(id)}
-                                                            />
-                                                            <label htmlFor={`task--${task}`}>&nbsp;{task}</label>
-                                                        </li>
-                                                    )
-                                                })
-                                        }
-                                    </ul>
-                            </fieldset>
-                            <fieldset>
-                                <button type="submit" className="btn btn--volunteer" onClick={submitVolunteer} ><span> Submit </span></button>
-                            </fieldset>
+
+        <main id="container--volunteerForm" className="container--volunteerForm">
+
+            <div className='header--volunteerForm'>
+                <img src={hero} className="hero--volunteerForm" alt="hands reaching out toward each other" />            
+            </div>
+
+            <article className='form--volunteerForm__container'>
+                <h1 className='center title--volunteerForm' >Thanks for volunteering to help!</h1>
+                <section className='form--volunteerForm__wrapper'> 
+                    <div className='form--volunteerForm__intro'>
+                        <div className='form--volunteerForm__legend'>
+                            Welcome, {thisUser?.first_name}!
                         </div>
-                    </form>
+                        <div className='form--volunteerForm__text'>
+                            <p>
+                                We are thrilled you want to join our Community Care team of volunteers!  We believe helping others is one way we can practice the way of Jesus. Whether you're a licensed craftsman or technician, or can simply push a broom or lawnmower, we are thrilled you're considering serving with us.
+                            </p>
+                            <p>
+                                Let's begin by making sure the information you already shared with us is still up to date.  If you seem something that needs a quick update, you can do that below.
+                            </p>
+                        </div>
+                        <div className='form--volunteerForm__userProfile' >
+                            <div className='userProfile--details'>
+                                <div className="fieldTitle">
+                                    Name: 
+                                </div>
+                                <div className="fieldDetails">
+                                    {thisUser.first_name} {thisUser.last_name}
+                                </div>
+                            </div>
+                            <div className='userProfile--details'>
+                                <div className="fieldTitle">
+                                    Address: 
+                                </div>
+                                <div className="fieldDetails">
+                                    {thisUser.address} {thisUser.apt}, {thisUser.city}, TN  {thisUser. zipcode}
+                                </div>
+                            </div>
+                            <div className='userProfile--details'>
+                                <div className="fieldTitle">
+                                    Phone:  
+                                </div>
+                                <div className="fieldDetails">
+                                    {thisUser.phone}
+                                </div>
+                            </div>
+                            <div className='userProfile--details'>
+                                <div className="fieldTitle">
+                                    Email:   
+                                </div>
+                                <div className="fieldDetails">
+                                    {thisUser.email}
+                                </div>
+                            </div>
+                            <div className='form--volunteerForm__instructions'>
+                                <p>
+                                    If any of the information above is not correct,<br/> please click the button below<br/> to edit your profile.
+                                </p>
+                                <div className="button--volunteerForm">
+                                    <button className='btn--volunteerForm'
+                                        onClick={() => {
+                                            handleEditProfileClick()
+                                        }}><span>Edit Profile</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="form--volunteerForm__offerHelp">
+                        <div className='form--volunteerForm__legend'>
+                            What are you interested in doing?
+                        </div>
+                        <form className="form--volunteerForm">
+                            <fieldset className='form--volunteerForm__fieldset'>
+                                <p>Select all types you are willing and able to perform.</p>
+                                <ul className="types-list">
+                                    {
+                                        remainingTasks.map(({task, id}) => {
+                                            return (
+                                                <li key={`task--${id}`}>
+                                                    <input
+                                                        type="checkbox"
+                                                        id={`task--${id}`}
+                                                        name={task}
+                                                        value={id}
+                                                        checked={checkedState[task]}
+                                                        onChange={() => handleOnChange(id)}
+                                                    />
+                                                    <label classname='form--volunteerForm__label--checkbox' htmlFor={`task--${task}`}>&nbsp;{task}</label>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </fieldset>
+                            <div className='button--volunteerForm'>
+                                <button
+                                    type="submit"
+                                    className="btn--volunteerForm"
+                                    onClick={submitVolunteer} 
+                                    ><span> Submit </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </section>
-            </section>
+            </article>
         </main>
     );
 }

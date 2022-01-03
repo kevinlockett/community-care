@@ -1,0 +1,94 @@
+.container--staff {
+    margin: 8.5rem 0 5rem;
+}
+
+.hero--staff {
+    max-width: 65rem;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.staff--article {
+    width: 65rem;
+    display: block;
+    margin: 0 auto;
+}
+
+.staff--title {
+    margin: 0;
+    padding: 1.25rem 2rem 1rem;
+    color: var(--clr-neutral-100);
+    background-color: #7a5d7b;
+    background-image: linear-gradient(0deg, #8e6c8f, #7a5d7b);
+    font-size: 2rem;
+    font-weight: 500;
+    text-shadow: 3px 3px 8px #4a374b;
+}
+
+.staff--wrapper {
+    padding: 0 20px 15px;
+    border-radius: 0 0 6px 6px;
+    background-color: var(--clr-neutral-100);
+    background-image: linear-gradient(0deg, #d9e4f2, #fbfafc);
+    box-shadow: 0 5px 20px #4a374b;
+}
+
+.staff--requests,
+.staff--volunteers {
+    margin-bottom: 2rem;
+}
+
+.staff--requests__title,
+.staff--volunteers__title {
+    display: block;
+	padding: 1rem 0 .75rem 0;
+	font-size: 1.75rem;
+	font-weight: 600;
+}
+
+.staff--requests__list,
+.staff--volunteers__list {
+    margin: 1rem 2rem;
+}
+
+.staff--requests__list--item,
+.staff--volunteers__list--item {
+    align-items: center;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    border: 3px solid #4a374b;
+}
+
+.staff--requests__list dl,
+.staff--volunteers__list dl {
+    font-size: 1.5rem;
+}
+
+.staff--requests__list dd,
+.staff--volunteers__list dd {
+    font-size: 1.5rem;
+}
+
+.staff--requests__list--item__name,
+.staff--volunteers__list--item__name {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.staff--requests__list img,
+.staff--volunteers__list img {
+    width: 30px;
+    margin-right: 1rem;
+}
+
+.staff--requests__list button,
+.staff--volunteers__list button {
+    margin-left: 2rem;
+}
+
+.staff--requests__comments,
+.staff--volunteers__comments {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
