@@ -1,1 +1,1 @@
-export const API = "http://localhost:8088"
+export const API = "https://community-care-api-6vm37.ondigitalocean.app/"

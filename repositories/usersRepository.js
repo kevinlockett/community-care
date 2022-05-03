@@ -42,4 +42,4 @@ export const getExistingUserEmail = (email) => {
         .then(res => res.json())
 }
 
-// http://localhost:8088/users?_embed=requests
+// https://community-care-api-6vm37.ondigitalocean.app//users?_embed=requests
