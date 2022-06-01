@@ -1,0 +1,110 @@
+.flex {
+    display: flex;
+    gap: var(--gap, .5rem);
+}
+
+.header-active {
+    height: 8rem;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    transition: 0.3s linear;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--clr-neutral-300);
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    z-index: 40;
+    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, .08);
+}
+
+.header-hidden {
+    height: 8rem;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    z-index: 40;
+    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, .08);
+    position: fixed;
+    top: -999px;
+    transition: 0.9s linear;
+}
+
+.container--header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: var(--clr-neutral-300);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+.header--logo {
+    margin: .5em;
+    max-width: 200px;
+}
+
+.navbar {
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--clr-neutral-900);
+    font-weight: var(--fw-700);
+    margin-inline-end: .5em;
+}
+
+@media (max-width: 39em) {
+    .navbar {
+        --gap: 1.5em;
+
+        position: fixed;
+        z-index: 1000;
+        inset: 0 0 0 60%;
+
+        flex-direction: column;
+        padding: min(20vh, 10rem) 2em;
+
+        transform: translateX(100%);
+        transition: transform 350ms ease-out;
+
+        background: var(--background);
+        backdrop-filter: blur(0.1rem);
+    }
+
+    .navbar a {
+        color: var(--clr-yellow-crayola);
+    }
+
+    .navbar[data-visible='true'] {
+        transform: translateX(0%);
+    }
+
+    .mobile-nav-toggle {
+        display: block;
+        position: absolute;
+        z-index: 9999;
+        background-color: transparent;
+        background-image: url(../img/icon-hamburger.svg);
+        background-repeat: no-repeat;
+        width: 2rem;
+        aspect-ratio: 1;
+        top: 2rem;
+        right: 2rem;
+        border: 0;
+    }
+
+    .mobile-nav-toggle[aria-expanded='true'] {
+        background-image: url(../img/icon-close.svg);
+    }
+}
+
+.filter-yellow {
+    filter: invert(97%) sepia(24%) saturate(5258%) hue-rotate(307deg) brightness(120%) contrast(110%);
+}

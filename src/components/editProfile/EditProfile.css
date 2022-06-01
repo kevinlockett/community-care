@@ -1,0 +1,156 @@
+:root {
+    --box-shadow-btn__editProfile:
+        0 1rem 1.25rem 0 #0f9ebb
+        0 -0.25rem 1.5rem var(--clr-neutral-800) inset,
+        0 0.75rem 0.5rem hsl(206, 92%, 91%) inset,
+        0 0.25rem 0.5rem 0 #01658e inset;
+}
+
+.container--editProfile fieldset { 
+    border: 0;
+}
+
+.container--editProfile input,
+.container--editProfile label,
+.container--editProfile span {
+	font-size: 110%;
+	line-height: 1.2;
+}
+
+.container--editProfile span {
+    padding-top: 2px;
+}
+
+.container--editProfile {
+    margin: 10rem 0 10rem;
+}
+
+.hero--editProfile {
+    max-width: 60rem;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px 6px 0 0;
+}
+
+.form--editProfile__container {
+    width: 60rem;
+    display: block;
+    margin: 0 auto 8rem;
+}
+
+.form--editProfile__title {
+    margin: 0;
+    padding: 1.25rem 2rem 1rem;
+    color: var(--clr-neutral-100);
+    background-color: #000b17;
+    background-image: linear-gradient(0deg, #063c7f, #000b17);
+    font-size: 2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 8px #0d65c2;
+}
+
+.form--editProfile__wrapper {
+    padding: 0 20px 15px;
+    border-radius: 0 0 6px 6px;
+    background-color: var(--clr-neutral-100);
+    box-shadow: 0 5px 20px #000b17;
+}
+
+.form--editProfile div {
+    margin: 0 0 4px;
+    padding: 4px 0;
+}
+
+.form--editProfile label,
+.form--editProfile .label-select {
+    float: left;
+	width: 15rem;
+	margin: 0 15px 0 0;
+	padding: 5px 0 0;
+	text-align: right;
+    font-weight: 500;
+}
+
+.form--editProfile__legend {
+	display: block;
+	padding: .5rem 0 .5rem 1rem;
+	font-size: 150%;
+	font-weight: bold;
+    color: #000b17;
+}
+
+.form--editProfile__input-wide {
+	width: 30rem;
+	height: 2rem;
+	margin: 0;
+	padding: 3px 3px 3px 27px;
+	border-radius: 6px;
+	border: 1px solid #b4b4b4;
+}
+
+.button--editProfile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn--editProfile {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+
+    cursor: pointer;
+	position: relative;
+	padding: 1.5rem 5.625rem;
+	border-radius: 3.75rem;
+	line-height: 1.875rem;
+	font-size: 1.5rem;
+
+    padding: .75rem 2.75rem;
+	font-size: 1.5rem;
+
+	font-weight: 500;
+
+    border: 1px solid var(--clr-neutral-800);
+    background-image: linear-gradient(-180deg, #18a6f9 0%, #000b17 100%);
+    box-shadow: var(--box-shadow-btn__editProfile);
+}
+
+.btn--editProfile span {
+    color: transparent;
+    background-image: linear-gradient(0deg, #18a6f9 0%, var(--clr-neutral-100) 100%);
+    -webkit-background-clip: text;
+	background-clip: text;
+	filter: drop-shadow(0 2px 2px var(--clr-neutral-800));
+}
+
+.btn--editProfile::before {
+    content: '';
+    display: block;
+    height: 0.25rem;
+    position: absolute;
+    top: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 8.5rem);
+    background: var(--clr-neutral-100);
+    border-radius: 100%;
+    opacity: 0.7;
+    background-image: linear-gradient(-270deg, rgba(255,255,255,0.00) 0%, #fff 20%, #fff 80%, rgba(255,255,255,0.00) 100%);
+}
+
+.btn--editProfile::after {
+    content: "";
+	display: block;
+	height: 0.25rem;
+	position: absolute;
+	bottom: 0.60rem;
+	left: 50%;
+	transform: translateX(-50%);
+	width: calc(100% - 8.5rem);
+	background: var(--clr-neutral-100);
+	border-radius: 100%;
+}
